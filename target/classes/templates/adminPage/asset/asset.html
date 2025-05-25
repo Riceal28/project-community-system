@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="../../../static/adminStatic/css/font.css" th:href="@{/adminStatic/css/font.css}">
+    <link rel="stylesheet" href="../../../static/adminStatic/css/xadmin.css" th:href="@{/adminStatic/css/xadmin.css}">
+    <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
+    <script type="text/javascript" src="../../../static/adminStatic/js/xadmin.js"
+            th:src="@{/adminStatic/js/xadmin.js}"></script>
+    <script type="text/javascript" src="../../../static/adminStatic/js/xadmin.js"
+            th:src="@{/adminStatic/js/MyLayuiUtils.js}"></script>
+    <script type="text/javascript" src="../../../static/adminStatic/js/echarts.min.js"
+            th:src="@{/adminStatic/js/echarts.min.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .layui-form-item {
+            margin-bottom: 0;
+        }
+
+        .layui-form-pane .layui-form-label {
+            max-width: 100px;
+        }
+
+        .layui-form-item .layui-input-inline .layui-form-select {
+            width: 180px;
+        }
+
+        .layui-form-pane .layui-form-label {
+            padding: 9px 15px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body " style="padding-bottom: 0;">
+                    <form class="layui-form layui-col-space5 layui-form-pane" id="form2">
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn layui-btn-normal" id="searchBtn2" type="button"
+                                    lay-filter="search">
+                                <i class="layui-icon">&#xe615;</i>
+                            </button>
+                            <input class="layui-btn layui-btn-normal layui-icon" type="reset" value="&#xe669;"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-body ">
+                    <div id="mission_progress" style="background-color:#ffffff;min-height:500px;"></div>
+                    <div id="mission_progress2" style="background-color:#ffffff;min-height:500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    layui.use(['table', 'form', 'upload', 'laydate'], function () {
+        var table = layui.table,
+            layer = layui.layer,
+            form = layui.form,
+            upload = layui.upload,
+            laydate = layui.laydate;
+
+        // 图标实例1
+        let missionProgressChart = echarts.init(document.getElementById('mission_progress'));
+        let missionProgressChart2 = echarts.init(document.getElementById('mission_progress2'));
+        // 配置项
+        let missionProgressOption = {
+            title: {
+                text: '车位收费月度统计',
+                textStyle: {
+                    color: '#235894'
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            legend: {
+                data: ['地下停车位', '地面停车位', '均值']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: {
+                type: 'value',
+                minInterval: 0.01,
+                axisLabel: {
+                    formatter: '￥ {value}'
+                }
+            },
+            series: [
+                {
+                    name: '地下停车位',
+                    type: 'bar',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return '￥ ' + value;
+                        }
+                    },
+                    data: []
+                },
+                {
+                    name: '地面停车位',
+                    type: 'bar',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return '￥ ' + value;
+                        }
+                    },
+                    data: []
+                },
+                {
+                    name: '均值',
+                    type: 'line',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return '￥ ' + value;
+                        }
+                    },
+                    data: []
+                }
+            ]
+        };
+        let missionProgressOption2 = {
+            title: {
+                text: '物业收费月度统计',
+                textStyle: {
+                    color: '#235894'
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [],
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: {
+                type: 'value',
+                minInterval: 0.01,
+                axisLabel: {
+                    formatter: '￥ {value}'
+                }
+            },
+            series: [
+                {
+                    type: 'bar',
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return '￥ ' + value;
+                        }
+                    },
+                    data: []
+                }
+            ]
+        };
+
+        // 初始化图表渲染
+        loadFunction2("charge/analysis/");
+
+        /**
+         * 绑定查询按钮
+         */
+        $("#searchBtn2").click(function () {
+            // 获取表单数据
+            var sendData = $("#form2").serialize();
+            // 重新调用表格加载方法
+            loadFunction2("charge/analysis/")
+        })
+
+        /**
+         * 加载图表渲染
+         * @param url
+         */
+        function loadFunction2(url) {
+            let loading = layer.load();
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'get',
+                success: function (result) {
+                    layer.close(loading);
+                    if (result.code == "0") {
+                        missionProgressOption.xAxis[0].data = result.data['chart1']['timeX'];
+                        missionProgressOption.series[0].data = result.data['chart1']['costY1'];
+                        missionProgressOption.series[1].data = result.data['chart1']["costY2"];
+                        missionProgressOption.series[2].data = result.data['chart1']["costAvg"];
+
+                        missionProgressOption2.xAxis[0].data = result.data['chart2']['timeX'];
+                        missionProgressOption2.series[0].data = result.data['chart2']['costY1'];
+
+                    } else {
+                        missionProgressOption.xAxis[0].data = [];
+                        missionProgressOption.series[0].data = [];
+                        missionProgressOption.series[1].data = [];
+                        missionProgressOption.series[2].data = [];
+
+                        missionProgressOption2.xAxis[0].data = [];
+                        missionProgressOption2.series[0].data = [];
+
+                        layer.confirm('暂无数据可分析！', {
+                            btn: ['确定']  //按钮
+                            , icon: 5
+                            , anim: 6
+                        }, function (index) {
+                            layer.close(index);
+                        });
+                    }
+
+                    // 渲染
+                    missionProgressChart.setOption(missionProgressOption);
+                    missionProgressChart2.setOption(missionProgressOption2);
+                }
+            })
+        }
+
+        // 图表 size 自适应
+        window.addEventListener("resize", function () {
+            missionProgressChart.resize();
+            missionProgressChart2.resize();
+        });
+    });
+</script>
+</html>
