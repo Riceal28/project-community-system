@@ -21,19 +21,22 @@
         id, user_name, phone, create_date, `type`, `desc`, `user_id`, type1, type2, health_code_path, travel_code_path
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        <!--@mbg.generated-->
-        select
-        <include refid="Base_Column_List"/>
-        from access_visit
-        where id = #{id,jdbcType=INTEGER}
+    <select id="selectByParam" resultMap="BaseResultMap" parameterType="com.project.property.entity.AccessVisit">
+        SELECT * FROM access_visit
+        <where>
+            <if test="userName != null and userName != ''">
+                AND user_name LIKE CONCAT('%', #{userName}, '%')
+            </if>
+            <if test="createDateStart != null">
+                AND create_date >= #{createDateStart}
+            </if>
+            <if test="createDateEnd != null">
+                AND create_date &lt;= #{createDateEnd}
+            </if>
+        </where>
+        ORDER BY create_date DESC
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="String">
-        <!--@mbg.generated-->
-        delete from access_visit
-        where id IN (${ids})
-    </delete>
 
     <insert id="insertSelective" parameterType="com.project.property.entity.AccessVisit">
         <!--@mbg.generated-->
@@ -133,24 +136,7 @@
     </update>
 
     <!-- 根据实体类作为参数查询 -->
-    <select id="selectByParam" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from access_visit
-        <where>
-            <trim>
-                <if test="userName != null and userName != ''">
-                    and INSTR(user_name, #{userName}) > 0
-                </if>
-                <if test="userId != null">
-                    and user_id = #{userId}
-                </if>
-                <if test="createDate != null and createDate != ''">
-                    and create_date between DATE_FORMAT(#{createDateStart}, '%Y-%m-%d %H:%M:%s') and DATE_FORMAT(#{createDateEnd}, '%Y-%m-%d %H:%M:%s')
-                </if>
-            </trim>
-        </where>
-    </select>
+
 
     <!-- 根据实体类作为参数查询数据总数 -->
     <select id="selectCountByParam" resultType="int">

@@ -26,7 +26,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
-
+    <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
+    <script th:src="@{/adminStatic/layui/layui.js}"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -203,109 +204,151 @@
     </div>
 </div>
 
-<!-- 出入登记 -->
-<div id="access">
+<!-- 打卡记录 -->
+<div th:if="${session.webUser == null}" id="accessRecord" class="text-center">
     <div class="container">
+        <div class="section-title">
+            <h2>打卡记录</h2>
+        </div>
         <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <img th:src="@{/webStatic/img/portfolio/05-large.jpg}" class="img-responsive" alt="" width="585"
-                     height="350">
+            <div class="col-xs-12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <!-- 搜索栏 -->
+                        <div style="padding-bottom: 10px;">
+                            <form class="layui-form" id="searchFormAccess">
+                                <div class="layui-inline">
+                                    <input type="text" name="userName" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline">
+                                    <input type="text" name="createDate" id="accessCreateDate" placeholder="请选择日期范围" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline">
+                                    <button type="button" class="layui-btn" id="searchAccessBtn">
+                                        <i class="layui-icon">&#xe615;</i> 搜索
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 数据表格 -->
+                        <table id="accessTable" lay-filter="accessTable"></table>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="about-text">
-                    <h2 style="font-size: 30px">疫情打卡</h2>
-                    <div class="col-lg-12 col-sm-12 col-xs-12" style="padding-left: 0;">
-                        <form role="form" style="position: relative; top: 0">
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">您的姓名</span>
-                                <input type="text" class="form-control" name="accessUserName" placeholder="请输入您的姓名"
-                                       aria-describedby="basic-addon1"
-                                       th:value="${session.webUser != null ? session.webUser.userName : ''}" readonly>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- 登录用户疫情打卡 -->
+<div th:if="${session.webUser != null}" id="accessVisit" class="text-center">
+<div id="access">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <img th:src="@{/webStatic/img/portfolio/05-large.jpg}" class="img-responsive" alt="" width="585"
+                                     height="350">
                             </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">联系电话</span>
-                                <input type="text" class="form-control" name="accessPhone" placeholder="请输入您的联系电话"
-                                       aria-describedby="basic-addon1"
-                                       th:value="${session.webUser != null ? session.webUser.phone : ''}" readonly>
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">是否为疑似病例</span>
-                                <div class="form-group">
-                                    <select class="form-control" name="type" autocomplete="off">
-                                        <option value="0">否</option>
-                                        <option value="1">是</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">是否隔离</span>
-                                <div class="form-group">
-                                    <select class="form-control" name="type1" autocomplete="off">
-                                        <option value="0">否</option>
-                                        <option value="1">是</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">疫苗接种情况</span>
-                                <div class="form-group">
-                                    <select class="form-control" name="type2" autocomplete="off">
-                                        <option value="未接种">未接种</option>
-                                        <option value="一针">一针</option>
-                                        <option value="二针">二针</option>
-                                        <option value="三针">三针</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <span class="input-group-addon">备注信息</span>
-                                <textarea class="form-control" rows="5" name="desc"
-                                          placeholder="若本人或亲友有疑似症状或者确诊病例，务必请在备注详细说明！"
-                                          style="resize: none"></textarea>
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">健康码</span>
-                                <input type="text" class="form-control" id="healthCodePath" name="healthCodePath"
-                                       placeholder="健康码上传图回调路径"
-                                       aria-describedby="basic-addon1" readonly>
-                            </div>
-                            <div class="input-group form-group">
-                                <span class="input-group-addon">行程码</span>
-                                <input type="text" class="form-control" id="travelCodePath" name="travelCodePath"
-                                       placeholder="行程码上传图回调路径"
-                                       aria-describedby="basic-addon1" readonly>
-                            </div>
-                            <div class="layui-row">
-                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
-                                    <div class="layui-upload">
-                                        <button type="button" class="layui-btn" id="test1">上传健康码</button>
-                                        <div class="layui-upload-list">
-                                            <img class="layui-upload-img code-img" id="demo1">
-                                            <p id="demoText"></p>
-                                        </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="about-text">
+                                    <h2 style="font-size: 30px">疫情打卡</h2>
+                                    <div class="col-lg-12 col-sm-12 col-xs-12" style="padding-left: 0;">
+                                        <form role="form" style="position: relative; top: 0">
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">您的姓名</span>
+                                                <input type="text" class="form-control" name="accessUserName" placeholder="请输入您的姓名"
+                                                       aria-describedby="basic-addon1"
+                                                       th:value="${session.webUser != null ? session.webUser.userName : ''}" readonly>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">联系电话</span>
+                                                <input type="text" class="form-control" name="accessPhone" placeholder="请输入您的联系电话"
+                                                       aria-describedby="basic-addon1"
+                                                       th:value="${session.webUser != null ? session.webUser.phone : ''}" readonly>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">是否为疑似病例</span>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="type" autocomplete="off">
+                                                        <option value="0">否</option>
+                                                        <option value="1">是</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">是否隔离</span>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="type1" autocomplete="off">
+                                                        <option value="0">否</option>
+                                                        <option value="1">是</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">疫苗接种情况</span>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="type2" autocomplete="off">
+                                                        <option value="未接种">未接种</option>
+                                                        <option value="一针">一针</option>
+                                                        <option value="二针">二针</option>
+                                                        <option value="三针">三针</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="input-group-addon">备注信息</span>
+                                                <textarea class="form-control" rows="5" name="desc"
+                                                          placeholder="若本人或亲友有疑似症状或者确诊病例，务必请在备注详细说明！"
+                                                          style="resize: none"></textarea>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">健康码</span>
+                                                <input type="text" class="form-control" id="healthCodePath" name="healthCodePath"
+                                                       placeholder="健康码上传图回调路径"
+                                                       aria-describedby="basic-addon1" readonly>
+                                            </div>
+                                            <div class="input-group form-group">
+                                                <span class="input-group-addon">行程码</span>
+                                                <input type="text" class="form-control" id="travelCodePath" name="travelCodePath"
+                                                       placeholder="行程码上传图回调路径"
+                                                       aria-describedby="basic-addon1" readonly>
+                                            </div>
+                                            <div class="layui-row">
+                                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+                                                    <div class="layui-upload">
+                                                        <button type="button" class="layui-btn" id="test1">上传健康码</button>
+                                                        <div class="layui-upload-list">
+                                                            <img class="layui-upload-img code-img" id="demo1">
+                                                            <p id="demoText"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+                                                    <div class="layui-upload">
+                                                        <button type="button" class="layui-btn" id="test2">上传行程码</button>
+                                                        <div class="layui-upload-list">
+                                                            <img class="layui-upload-img code-img" id="demo2">
+                                                            <p id="demoText2"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button id="accessBtn" type="button" class="btn btn-primary"
+                                                        style="position:absolute; right: 0px">
+                                                    提交信息
+                                                </button>
+                                                <button id="toAccessPage" type="button" class="btn btn-primary"
+                                                        style="position:absolute; right: 95px">
+                                                    我的登记记录
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
-                                    <div class="layui-upload">
-                                        <button type="button" class="layui-btn" id="test2">上传行程码</button>
-                                        <div class="layui-upload-list">
-                                            <img class="layui-upload-img code-img" id="demo2">
-                                            <p id="demoText2"></p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <button id="accessBtn" type="button" class="btn btn-primary"
-                                        style="position:absolute; right: 0px">
-                                    提交信息
-                                </button>
-                                <button id="toAccessPage" type="button" class="btn btn-primary"
-                                        style="position:absolute; right: 95px">
-                                    我的登记记录
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -438,11 +481,6 @@
 </div>
 
 <!-- 底部区域 -->
-<div id="footer" style="background: #FFF">
-    <div class="container text-center">
-        <p>Copyright &copy; 2022.Xin All rights reserved.</p>
-    </div>
-</div>
 <script type="text/javascript" th:src="@{/webStatic/js/jquery.1.11.1.js}" src="js/jquery.1.11.1.js"></script>
 <script type="text/javascript" th:src="@{/webStatic/js/bootstrap.js}" src="js/bootstrap.js"></script>
 <script type="text/javascript" th:src="@{/webStatic/js/SmoothScroll.js}" src="js/SmoothScroll.js"></script>
