@@ -83,7 +83,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                                 , "/userComplaint/getDataByPageWeb", "/userComplaint/toFindPage", "/userComplaint/toEditUserResultPage", "/userComplaint/updateInfoByObject",
                                 "/userRepair/getDataByPageWeb", "/accessVisit/getDataByPage", "/user/toUserEditWindow", "/notice/**", "/system/uploadImages"
                                 , "/propertyPayVisit/toPropertyPayVisitPage", "/MyPropertyChargeVisit/toPropertyChargeVisitPage", "/propertyPayVisit/getDataByPage", "/propertyChargeVisit/getDataByPage"
-                                , "/api/file/upload/*", "/carPark/charge/getDataByPage");
+                                , "/api/file/upload/*", "/carPark/charge/getDataByPage", "/house/getRentalHouse");
             }
         };
         return webMvcConfigurer;

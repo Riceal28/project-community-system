@@ -264,4 +264,11 @@ public class HouseInfoService {
         // 更新住房信息
         return houseInfoMapper.updateByPrimaryKeySelective(houseInfo);
     }
+
+    public List<HouseInfo> getRentalHouse(){
+        return  houseInfoMapper.getAllRental();
+    }
+    public List<HouseInfo> getRentalHouseMessage(String message){
+        return houseInfoMapper.getAllRentalMessage(message);
+    }
 }

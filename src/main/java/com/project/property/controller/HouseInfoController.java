@@ -216,4 +216,19 @@ public class HouseInfoController {
             return new ResultMessage(500, "操作出现异常：" + e.getMessage());
         }
     }
+    @PostMapping("/getRentalHouse")
+    public ResultMessage getRentalHouse(@RequestParam(defaultValue = "") String message) {
+        List<HouseInfo> list = null;
+        try{
+            if(message == ""){
+                list = houseInfoService.getRentalHouse();
+            }
+            else{
+                list = houseInfoService.getRentalHouseMessage(message);
+            }
+            return  new ResultMessage(0,"success",list);
+        }catch (Exception e){
+            return new ResultMessage(500, "操作出现异常");
+        }
+    }
 }

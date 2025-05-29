@@ -259,4 +259,20 @@
         FROM house_info
         WHERE parent_building IN (${nums})
     </select>
+
+<!--    查询出租房间-->
+    <select id="getAllRental" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `house_info`
+        where  is_sold in ('1','2')
+    </select>
+
+
+    <select id="getAllRentalMessage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `house_info`
+        where is_sold in ('1','2') AND house_type LIKE CONCAT('%',#{message},'%')
+    </select>
 </mapper>

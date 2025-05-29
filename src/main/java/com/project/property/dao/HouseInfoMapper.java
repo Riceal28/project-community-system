@@ -100,4 +100,7 @@ public interface HouseInfoMapper {
                                 @Param("floor") String parentFloor, @Param("houseNum") String houseNum);
 
     Integer updateInfoByUserId(HouseInfo houseInfo);
+
+    List<HouseInfo> getAllRental();
+    List<HouseInfo> getAllRentalMessage(@Param("message") String message);
 }

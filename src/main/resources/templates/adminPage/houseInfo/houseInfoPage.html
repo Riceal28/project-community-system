@@ -117,18 +117,19 @@
 </script>
 
 <script id="operationBar" type="text/html">
-    {{# if(d.isSold == 0) {}}
+    {{# if(d.isSold == 0) { }}
     <button class="layui-btn layui-btn-sm iconfont layui-btn-warm" lay-event="edit">&#xe69e; 修改</button>
     <button class="layui-btn layui-btn-sm iconfont" lay-event="sold">&#xe702; 出售</button>
-    {{# } else if(d.isSold == 1 || d.isSold == 2) {}}
+    {{# } else if(d.isSold == 1 || d.isSold == 2) { }}
     <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="rent">&#xe69e; 出租</button>
-    {{# } else if(d.isSold == 3) {}}
+    {{# } else if(d.isSold == 3) { }}
     <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="unrent">&#xe69e; 不再出租</button>
-    {{# }}}
-    {{# if(d.isSold != 0) {}}
+    {{# } }}
+
+    {{# if(d.isSold != 0) { }}
     <button class="layui-btn layui-btn-sm iconfont layui-btn-warm" lay-event="sold">&#xe69e; 修改户主</button>
     <button class="layui-btn layui-btn-sm iconfont layui-btn-normal" lay-event="search">&#xe6ac; 查看住户</button>
-    {{# }}}
+    {{# } }}
 </script>
 
 <script>
@@ -221,7 +222,7 @@
                                 title: '是否出售',
                                 sort: true,
                                 width: 120,
-                                templet: "<div>{{d.isSold != 0 ? '<span style=\"color:red;\">已出售</span>' : '<span style=\"color:blue;\">未出售</span>'}}</div>"
+                                templet: "<div>{{d.isSold != 0 ? '<span style=\"color:#a71a1a;\">已出售</span>' : '<span style=\"color:blue;\">未出售</span>'}}</div>"
                             }, {
                                 field: 'isSold',
                                 title: '是否出租',
