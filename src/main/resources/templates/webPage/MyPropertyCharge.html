@@ -41,7 +41,7 @@
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <fieldset class="layui-elem-field layui-field-title site-title">
-            <legend><a name="use">我的物业抄表信息</a></legend>
+            <legend><a name="use">My property meter reading information</a></legend>
         </fieldset>
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -50,10 +50,10 @@
                         <input type="hidden" name="userName" th:value="${clientName}">
                         <!-- 根据收费项查询 -->
                         <div class="layui-inline layui-show-xs-block layui-form-item">
-                            <label class="layui-form-label">收费项</label>
+                            <label class="layui-form-label">Fee items</label>
                             <div class="layui-input-inline">
                                 <select name="itemId" lay-search>
-                                    <option value="">选择或输入收费项</option>
+                                    <option value="">Select or enter fee items</option>
                                     <option th:value="${item.id}" th:each="item:${itemList}"
                                             th:text="${item.chargeName}"></option>
                                 </select>
@@ -61,12 +61,12 @@
                         </div>
                         <!-- 根据收费状态查询 -->
                         <div class="layui-inline layui-show-xs-block layui-form-item">
-                            <label class="layui-form-label">缴费状态</label>
+                            <label class="layui-form-label">Payment status</label>
                             <div class="layui-input-inline">
                                 <select name="visitStatus">
-                                    <option value="">请选择缴费状态</option>
-                                    <option value="1">未缴费</option>
-                                    <option value="0">已缴费</option>
+                                    <option value="">Please select payment status</option>
+                                    <option value="1">Unpaid</option>
+                                    <option value="0">Paid</option>
                                 </select>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
             </div>
         </div>
         <fieldset class="layui-elem-field layui-field-title site-title">
-            <legend><a name="use">我的物业缴费记录</a></legend>
+            <legend><a name="use">My property payment records</a></legend>
         </fieldset>
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -93,10 +93,10 @@
                         <input type="hidden" name="clientName" th:value="${clientName}">
                         <!-- 根据渠道名查询 -->
                         <div class="layui-inline layui-show-xs-block layui-form-item">
-                            <label class="layui-form-label">收费项</label>
+                            <label class="layui-form-label">Fee items</label>
                             <div class="layui-input-inline">
                                 <select name="itemName" lay-search>
-                                    <option value="">选择或输入收费项</option>
+                                    <option value="">Select or enter fee items</option>
                                     <option th:value="${item.chargeName}" th:each="item:${itemList}"
                                             th:text="${item.chargeName}"></option>
                                 </select>
@@ -121,7 +121,7 @@
 </body>
 <script id="operationBar" type="text/html">
     {{# if(d.visitStatus == 1){}}
-    <a class="layui-btn layui-btn-sm iconfont" lay-event="pay">&#xe74e; 缴费</a>
+    <a class="layui-btn layui-btn-sm iconfont" lay-event="pay">&#xe74e; Pay</a>
     {{# }}}
 </script>
 
@@ -174,7 +174,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '抄表记录信息'
+                    , title: 'Meter reading record information'
                     , toolbar: '#toolbarDemo'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -184,45 +184,45 @@
                     , cols:
                         [
                             [ //表头
-                                {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'itemId', title: '收费项ID', hide: true}
-                                , {field: 'itemName', title: '收费项', width: 100}
+                                {type: 'numbers', title: 'No.', width: 60}
+                                , {field: 'id', title: 'Id', width: 120, hide: true}
+                                , {field: 'itemId', title: 'Item id', hide: true}
+                                , {field: 'itemName', title: 'Item name', width: 100}
                                 , {
                                 field: 'buildingInfo',
-                                title: '楼宇信息',
+                                title: 'Building info',
                                 width: 160,
-                                templet: '<div>{{d.buildingNum}}号楼{{d.unitNum}}单元{{d.houseNum}}</div>'
+                                templet: '<div>Room {{d.houseNum}}, Unit {{d.unitNum}}, Building {{d.buildingNum}}</div>'
                             }
-                                , {field: 'userName', title: '户主姓名'}
-                                , {field: 'price', title: '费用', width: 90, templet: '<div>{{d.price / 100}}元</div>'}
+                                , {field: 'userName', title: 'Name'}
+                                , {field: 'price', title: 'Price', width: 90, templet: '<div>{{d.price / 100}}RM</div>'}
                                 , {
                                 field: 'prevMonthCount',
-                                title: '上月读数',
+                                title: 'Last month\'s reading',
                                 width: 100,
-                                templet: '<div>{{d.prevMonthCount == null ? "无":d.prevMonthCount}}</div>'
+                                templet: '<div>{{d.prevMonthCount == null ? "None":d.prevMonthCount}}</div>'
                             }
                                 , {
                                 field: 'currMonthCount',
-                                title: '本月读数',
+                                title: 'This month\'s reading',
                                 width: 100,
-                                templet: '<div>{{d.currMonthCount == null ? "无":d.currMonthCount}}</div>'
+                                templet: '<div>{{d.currMonthCount == null ? "None":d.currMonthCount}}</div>'
                             }
                                 , {
                                 field: 'useCount',
-                                title: '用量',
+                                title: 'Usage',
                                 width: 100,
-                                templet: '<div>{{d.useCount == null ? "无" : d.useCount}}</div>'
+                                templet: '<div>{{d.useCount == null ? "None" : d.useCount}}</div>'
                             }
-                                , {field: 'readDate', title: '抄表时间', width: 180}
-                                , {field: 'visitDate', title: '录入时间', hide: true}
-                                , {field: 'readName', title: '抄表人'}
+                                , {field: 'readDate', title: 'Meter reading time', width: 180}
+                                , {field: 'visitDate', title: 'Record time', hide: true}
+                                , {field: 'readName', title: 'Meter reader'}
                                 , {
                                 field: 'visitStatus',
-                                title: '缴费状态',
-                                templet: "<div>{{d.visitStatus == 1 ? '<span style=\"color:red;\">未缴费</span>' : '<span style=\"color:blue;\">已缴费</span>'}}</div>"
+                                title: 'Payment status',
+                                templet: "<div>{{d.visitStatus == 1 ? '<span style=\"color:red;\">Unpaid</span>' : '<span style=\"color:blue;\">Paid</span>'}}</div>"
                             }
-                                , {field: 'caozuo', title: '操作', width: 200, toolbar: '#operationBar'}
+                                , {field: 'caozuo', title: 'Operation', width: 200, toolbar: '#operationBar'}
                             ]
                         ]
                 })
@@ -237,8 +237,8 @@
                 // 如果只选择结束时间不选择开始时间, 则参数有误, 不可进行查询
                 if (!start && end) {
                     layer.open({
-                        title: '错误消息'
-                        , content: '抱歉…不可以只选择结束时间不选择开始时间！'
+                        title: 'Error'
+                        , content: 'Sorry... you cannot only select the end time without selecting the start time!'
                         , shade: 0.1
                         , icon: 5
                         , anim: 6
@@ -265,7 +265,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel information'
                     , toolbar: true
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -275,20 +275,20 @@
                     , cols:
                         [
                             [ //表头
-                                {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'chargeId', title: '收费项ID', hide: true}
-                                , {field: 'itemName', title: '收费项名称'}
+                                {type: 'numbers', title: 'No.', width: 60}
+                                , {field: 'id', title: 'Id', width: 120, hide: true}
+                                , {field: 'chargeId', title: 'Charge iD', hide: true}
+                                , {field: 'itemName', title: 'Item name'}
                                 , {
                                 field: 'buildingNum',
-                                title: '房间信息',
-                                templet: '<div>{{d.buildingNum}}号楼{{d.unitNum}}单元{{d.houseNum}}</div>'
+                                title: 'Building info',
+                                templet: '<div>Room {{d.houseNum}}, Unit {{d.unitNum}}, Building {{d.buildingNum}}</div>'
                             }
-                                , {field: 'clientName', title: '户主姓名'}
-                                , {field: 'payType', title: '缴费方式'}
-                                , {field: 'payMoney', title: '缴费金额', templet: '<div>{{d.payMoney / 100}}元</div>'}
-                                , {field: 'payDate', title: '收费时间'}
-                                , {field: 'chargePerson', title: '收费人员'}
+                                , {field: 'clientName', title: 'Name'}
+                                , {field: 'payType', title: 'Payment Methods'}
+                                , {field: 'payMoney', title: 'Amount', templet: '<div>{{d.payMoney / 100}}元</div>'}
+                                , {field: 'payDate', title: 'Pay Date'}
+                                , {field: 'chargePerson', title: 'Charging Staff'}
                             ]
                         ]
                 })
@@ -302,7 +302,7 @@
                 var dataId = getIds(data);          //data是选中的所有数据，得到的是一个数组，将这个数组传入getIds方法进行处理
                 switch (obj.event) {
                     case 'add':
-                        toWindow("toAddWindow", "录入抄表信息", "750px", "500px");
+                        toWindow("toAddWindow", "Record meter reading information", "750px", "500px");
                         break;
                     //自定义头工具栏右侧图标 - 提示
                     // case 'del':
@@ -318,7 +318,7 @@
                     case 'pay':
                         // 获取本条信息的数据
                         var id = obj.data.id;
-                        toWindow("../propertyPayVisit/toPayWindow?id=" + id, "物业缴费", "440px", "430px");
+                        toWindow("../propertyPayVisit/toPayWindow?id=" + id, "Property payment", "440px", "430px");
                         break;
                 }
             });

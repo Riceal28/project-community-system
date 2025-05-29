@@ -11,7 +11,7 @@ $(function () {
         $("#prev").click(function () {
             let currPage = $("input[name='currPage']").val();
             if (currPage - 1 < 1) {
-                layer.msg("已经是第一页啦！");
+                layer.msg("It's already the first page!");
                 return;
             }
             let liTotal = $(".pagination li:eq(" + parseInt(parseInt(currPage) - 1) + ")");
