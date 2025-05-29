@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -53,26 +53,26 @@
         <input type="hidden" name="userName" th:value="${noticeInfo.userName}">
         <!-- 公告标题 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">标题</label>
+            <label class="layui-form-label">Title</label>
             <div class="layui-input-inline" lay-verify="required" >
-                <input class="layui-input" autocomplete="off" placeholder="请填写标题名 (必填)"
+                <input class="layui-input" autocomplete="off" placeholder="Please enter the title (required)"
                        name="title" th:value="${noticeInfo.title}">
             </div>
         </div>
         <!-- 公告内容 -->
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">公告内容</label>
+            <label class="layui-form-label">Content</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" class="layui-textarea" name="content">[[${noticeInfo.content}]]</textarea>
+                <textarea placeholder="Please enter the content" class="layui-textarea" name="content">[[${noticeInfo.content}]]</textarea>
             </div>
         </div>
 
         <!-- 图片上传 -->
         <div class="layui-form-item layui-form-text">
             <div class="layui-upload">
-                <button type="button" class="layui-btn layui-btn-normal" id="test1">上传图片</button>
+                <button type="button" class="layui-btn layui-btn-normal" id="test1">Upload picture</button>
                 <div class="layui-upload-list">
-                    <img class="layui-upload-img" id="demo1" width="350" alt="暂无图片" th:src="@{upload/${noticeInfo.newsImg}}"
+                    <img class="layui-upload-img" id="demo1" width="350" alt="No picture right now" th:src="@{upload/${noticeInfo.newsImg}}"
                          style="min-height: 100px; border: 1px solid #DDD">
                     <input type="hidden" id="noticeImg" name="newsImg" th:value="${noticeInfo.newsImg}">
                     <p id="demoText"></p>
@@ -83,8 +83,8 @@
 
     <div class="content-input" style="margin-bottom: 15px">
         <input type="hidden" th:value="${noticeInfo.id}" name="id">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="清空">
+        <input type="button" value="Post" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Clear">
     </div>
 </form>
 
@@ -105,7 +105,7 @@
             ,done: function(res){
                 //如果上传失败
                 if(res.code != 0){
-                    return layer.msg('上传失败');
+                    return layer.msg('Upload failed');
                 }
                 //上传成功的一些操作
                 console.log(res.data)
@@ -115,7 +115,7 @@
             ,error: function(){
                 //演示失败状态，并实现重传
                 var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.html('<span style="color: #FF5722;">Upload failed</span> <a class="layui-btn layui-btn-xs demo-reload">Retry</a>');
                 demoText.find('.demo-reload').on('click', function(){
                     uploadInst.upload();
                 });
@@ -146,7 +146,7 @@
                 // 如果flag不为空就是验证不通过
                 if(flag) {
                     layer.confirm(flag, {
-                        btn: ['确定']  //按钮
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     });
@@ -170,14 +170,14 @@
                     success: function(rollData) {
                         if (rollData.code == "0") {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -187,8 +187,8 @@
                         }
                     },
                     error: function(res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -209,7 +209,7 @@
             var content = $("textarea[name='content']").val();
             // 非空验证
             if(!title || !content) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please fill in all required data!";
             }
         }
     });

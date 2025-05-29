@@ -32,8 +32,8 @@ function toWindow(url, title, width, height) {
 function findInfo(count, title, url, width, height) {
     if (count == 0) {
         layer.open({
-            title: '错误消息'
-            , content: '请先选择一条信息再进行操纵！'
+            title: 'Error'
+            , content: 'Please select a row before operating!'
             // , skin: 'layui-layer-lan'
             , shade: 0.1
             , icon: 5
@@ -42,8 +42,8 @@ function findInfo(count, title, url, width, height) {
         })
     } else if (count > 1) {
         layer.open({
-            title: '错误消息'
-            , content: '您只可选中一条信息操纵！'
+            title: 'Error'
+            , content: 'You can only select one row to manipulate!'
             // , skin: 'layui-layer-lan'
             , shade: 0.1
             , icon: 5
@@ -146,8 +146,8 @@ function getIdsAddSymbol(dataArray) {
 function deleteInfo(count, dataId, url) {
     if (count == 0) {
         layer.open({
-            title: '错误消息'
-            , content: '请先选择一条信息再进行操纵！'
+            title: 'Error'
+            , content: 'Please select a row before operating!'
             // , skin: 'layui-layer-lan'
             , shade: 0.1
             , icon: 5
@@ -157,8 +157,8 @@ function deleteInfo(count, dataId, url) {
     } else {
         if (lock) {
             lock = false;
-            layer.confirm('确定要删除所有选中的信息？', {
-                btn: ['确定', '取消'] //按钮
+            layer.confirm('Are you sure you want to delete all selected rows?', {
+                btn: ['Yes', 'No'] //按钮
                 , shade: 0.1
                 , icon: 5
                 , anim: 6
@@ -171,7 +171,7 @@ function deleteInfo(count, dataId, url) {
                         // 207有不可删除的原因, 200成功, 500删除失败
                         if (rollData.code == 207) {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定'] //按钮
+                                btn: ['OK'] //按钮
                                 , icon: 7
                             }, function () {
                                 layer.closeAll();
@@ -180,7 +180,7 @@ function deleteInfo(count, dataId, url) {
                         } else {
                             if (rollData.code == 0) {
                                 layer.confirm(rollData.msg, {
-                                    btn: ['确定'] //按钮
+                                    btn: ['OK'] //按钮
                                     , icon: 6
                                 }, function () {
                                     window.location.reload();
@@ -188,7 +188,7 @@ function deleteInfo(count, dataId, url) {
                                 })
                             } else {
                                 layer.confirm(rollData.msg, {
-                                    btn: ['确定'] //按钮
+                                    btn: ['OK'] //按钮
                                     , icon: 5
                                     , anim: 6
                                 }, function () {
@@ -201,7 +201,7 @@ function deleteInfo(count, dataId, url) {
                 )
             }, function () { //取消
                 lock = true;
-                layer.msg('取消删除！', {
+                layer.msg('Cancel', {
                     icon: 6
                     , time: 2000
                 });
@@ -245,7 +245,7 @@ function handleTitleData(tHead) {
     // 循环处理表头信息
     for (i = 0; i < tHead.length; i++) {
         // 没有被隐藏
-        if (!$(tHead[i]).is(':hidden') && $(tHead[i]).text() != "操作") {
+        if (!$(tHead[i]).is(':hidden') && $(tHead[i]).text() != "Operation") {
             // 将没有被隐藏的表头加入标题数组中
             title.push($(tHead[i]).text());
         }
@@ -263,7 +263,7 @@ function handleTitleDataRemoveCheckbox(tHead) {
     // 循环处理表头信息
     for (i = 0; i < tHead.length; i++) {
         // 没有被隐藏
-        if (!$(tHead[i]).is(':hidden') && $(tHead[i]).attr("data-field") != 0 && $(tHead[i]).text() != "操作") {
+        if (!$(tHead[i]).is(':hidden') && $(tHead[i]).attr("data-field") != 0 && $(tHead[i]).text() != "Operation") {
             // 将没有被隐藏的表头加入标题数组中
             title.push($(tHead[i]).text());
         }
@@ -279,8 +279,8 @@ function handleTitleDataRemoveCheckbox(tHead) {
 function verifyExport(exportData) {
     if (!exportData || exportData.length == 0) {
         layer.open({
-            title: '错误消息'
-            , content: '抱歉…未找到可以导出的数据！'
+            title: 'Error'
+            , content: 'Sorry... No data found to export!'
             // , skin: 'layui-layer-lan'
             , shade: 0.1
             , icon: 5
@@ -313,8 +313,8 @@ function findAllExportData(title, url, queryData, load) {
             } else {
                 layer.close(load);
                 layer.open({
-                    title: '错误消息'
-                    , content: '抱歉…未找到可以导出的数据！'
+                    title: 'Error'
+                    , content: 'Sorry... No data found to export!'
                     // , skin: 'layui-layer-lan'
                     , shade: 0.1
                     , icon: 5
@@ -345,8 +345,8 @@ function findPageExportData(title, url, queryData, page, limit, load) {
             } else {
                 layer.close(load);
                 layer.open({
-                    title: '错误消息'
-                    , content: '抱歉…未找到可以导出的数据！'
+                    title: 'Error'
+                    , content: 'Sorry... No data found to export!'
                     // , skin: 'layui-layer-lan'
                     , shade: 0.1
                     , icon: 5
@@ -362,8 +362,8 @@ function findPageExportData(title, url, queryData, page, limit, load) {
  * Ajax请求出错时进行的提示
  */
 $(document).ajaxError(function(event,request, settings){
-    layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-        btn: ['确定']  //按钮
+    layer.confirm('Oops! There was a problem with the access!', {
+        btn: ['OK']  //按钮
         // , skin: 'layui-layer-lan'
         , icon: 5
         , anim: 6
@@ -377,8 +377,8 @@ $(document).ajaxError(function(event,request, settings){
  */
 function tips() {
     layer.open({
-        title: '消息提示'
-        , content: '如需修改直接单击单元格就可开始修改哦！'
+        title: 'Tip'
+        , content: 'If you need to modify, just click on the cell to start modifying!'
         // , skin: 'layui-layer-lan'
         , shade: 0.1
         , icon: 7
@@ -420,7 +420,7 @@ function checkID(val) {
             }
         }
     }
-    return "身份证输入格式有误！";
+    return "The ID card input format is incorrect!";
 }
 
 /**
@@ -471,7 +471,7 @@ function checkDate(val) {
  */
 function checkProvince(val) {
     var pattern = /^[1-9][0-9]/;
-    var provs = {11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门"};
+    var provs = {11:"Beijing",12:"Tianjin",13:"Hebei",14:"Shanxi",15:"Inner Mongolia",21:"Liaoning",22:"Jilin",23:"Heilongjiang",31:"Shanghai",32:"Jiangsu",33:"Zhejiang",34:"Anhui",35:"Fujian",36:"Jiangxi",37:"Shandong",41:"Henan",42:"Hubei",43:"Hunan",44:"Guangdong",45:"Guangxi",46:"Hainan",50:"Chongqing",51:"Sichuan",52:"Guizhou",53:"Yunnan",54:"Tibet",61:"Shaanxi",62:"Gansu",63:"Qinghai",64:"Ningxia",65:"Xinjiang",71:"Taiwan",81:"Hong Kong",82:"Macao"};
     if(pattern.test(val)) {
         if(provs[val]) {
             return true;
@@ -497,9 +497,9 @@ function checkPhone(phoneNum) {
     // 手机号正则
     var rePhone = /^1[3456789]\d{9}$/;
     if(!phoneNum) {
-        return "请填写完整信息";
+        return "Please enter the complete information";
     } else if(!rePhone.test(phoneNum)) {
-        return "手机号格式有误！"
+        return "The phone number format is incorrect!"
     }
 }
 // -----------------------------------------------------------------------------------------
@@ -519,9 +519,9 @@ function checkNumber(number) {
     // 手机号正则
     var reNumber = /^[0-9]+$/;
     if(!number) {
-        return "请填写完整信息";
+        return "Please enter the complete information";
     } else if(!reNumber.test(number)) {
-        return "请输入正确的正整数！"
+        return "Please enter a correct positive integer!"
     }
 }
 // -----------------------------------------------------------------------------------------

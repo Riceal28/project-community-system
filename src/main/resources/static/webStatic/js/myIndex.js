@@ -36,7 +36,7 @@ $(function () {
             let currPage = $("input[name='currPage']").val();
             let totalPage = $("input[name='totalPage']").val();
             if (currPage + 1 >= totalPage) {
-                layer.msg("已经是最后一页啦！");
+                layer.msg("It's already the last page!");
                 return;
             }
             let liTotal = $(".pagination li:eq(" + parseInt(parseInt(currPage) + 1) + ")");
@@ -124,7 +124,7 @@ $(function () {
                     var panelBody = $("<div class=\"panel-body\" style=\"padding: 8px 12px;\"></div>");
                     var textSpan = $("<span class=\"text_span\">" + selectResult[i].content + "</span>");
                     var div = $("<div style=\"margin-top: 2px\"></div>");
-                    var button = $("<button type=\"button\" class=\"btn btn-primary noticeInfoBtn\" data-id='" + selectResult[i].id + "'>查看详细</button>")
+                    var button = $("<button type=\"button\" class=\"btn btn-primary noticeInfoBtn\" data-id='" + selectResult[i].id + "'>Details</button>")
                     button.onclick = function (e) {
                         alert(1)
                     }
@@ -242,7 +242,7 @@ $(function () {
             }
             layer.open({
                 type: 2,
-                title: '发表评论',
+                title: 'Make a comment',
                 scrollbar: false,
                 shadeClose: true,
                 resize: false,
@@ -284,7 +284,7 @@ $(function () {
             // 点击登录弹出登录窗
             layer.open({
                 type: 2,
-                title: "我的评价",
+                title: "My comments",
                 shadeClose: true,
                 shade: 0.5,
                 area: ['1000px', '485px'],
@@ -304,7 +304,7 @@ $(function () {
             // 点击登录弹出登录窗
             layer.open({
                 type: 2,
-                title: "我的公告",
+                title: "My Posts",
                 shadeClose: true,
                 shade: 0.5,
                 area: ['1000px', '600px'],
@@ -327,7 +327,7 @@ $(function () {
             // 点击登录弹出登录窗
             layer.open({
                 type: 2,
-                title: "投诉信息",
+                title: "Complaint information",
                 shadeClose: true,
                 shade: 0.5,
                 area: ['1200px', '600px'],
@@ -347,7 +347,7 @@ $(function () {
             // 点击登录弹出登录窗
             layer.open({
                 type: 2,
-                title: "报修信息",
+                title: "Repair information",
                 shadeClose: true,
                 shade: 0.5,
                 area: ['1200px', '600px'],
@@ -367,7 +367,7 @@ $(function () {
          */
         $("#editPhone").click(function () {
             var id = $("#userId").val();
-            toWindow("user/toUserEditWindow?id=" + id, "修改住户信息", "400px", "600px");
+            toWindow("user/toUserEditWindow?id=" + id, "Modify resident information", "400px", "600px");
         })
 
         /**
@@ -382,21 +382,21 @@ $(function () {
                     $('#demo1').attr('src', result); //图片链接（base64）
                 });
 
-                layer.msg('上传中', {icon: 16});
+                layer.msg('Uploading', {icon: 16});
             }
             , done: function (res) {
                 //如果上传失败
                 if (res.code > 0) {
-                    return layer.msg('上传失败');
+                    return layer.msg('Upload failed');
                 }
                 //上传成功的一些操作
-                layer.msg('上传完毕', {icon: 1})
+                layer.msg('Finished', {icon: 1})
                 $('#healthCodePath').val(res.msg);
                 $('#demoText').html('')
             }
             , error: function () {
                 //演示失败状态，并实现重传
-                $('#demoText').html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                $('#demoText').html('<span style="color: #FF5722;">Upload failed</span> <a class="layui-btn layui-btn-xs demo-reload">Retry</a>');
             }
         });
 
@@ -412,21 +412,21 @@ $(function () {
                     $('#demo2').attr('src', result); //图片链接（base64）
                 });
 
-                layer.msg('上传中', {icon: 16});
+                layer.msg('Uploading', {icon: 16});
             }
             , done: function (res) {
                 //如果上传失败
                 if (res.code > 0) {
-                    return layer.msg('上传失败');
+                    return layer.msg('Upload failed');
                 }
                 //上传成功的一些操作
-                layer.msg('上传完毕', {icon: 1})
+                layer.msg('Finished', {icon: 1})
                 $('#travelCodePath').val(res.msg);
                 $('#demoText2').html('')
             }
             , error: function () {
                 //演示失败状态，并实现重传
-                $('#demoText2').html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                $('#demoText2').html('<span style="color: #FF5722;">Upload failed</span> <a class="layui-btn layui-btn-xs demo-reload">Retry</a>');
             }
         });
 
@@ -449,11 +449,11 @@ $(function () {
             var healthCodePath = $("input[name='healthCodePath']").val()
             var travelCodePath = $("input[name='travelCodePath']").val()
             if (!healthCodePath || !travelCodePath) {
-                layer.confirm("请务必上传健康码和行程码", {
-                    btn: ['确定'] //按钮
+                layer.confirm("Please be sure to upload the house layout and house overview", {
+                    btn: ['OK'] //按钮
                     , icon: 5
                     , anim: 6
-                    , title: '错误信息'
+                    , title: 'Error'
                 }, function (index) {
                     layer.close(index)
                 })
@@ -481,14 +481,14 @@ $(function () {
                 success: function (res) {
                     if (res.code == "0") {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 6
                         }, function () {
                             window.parent.location.reload();    //刷新父页面
                         });
                     } else {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -497,8 +497,8 @@ $(function () {
                     }
                 },
                 error: function (res) {
-                    layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                        btn: ['确定']  //按钮
+                    layer.confirm('Oops! There was a problem with the access!', {
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     }, function (index) {
@@ -522,11 +522,11 @@ $(function () {
             var phone = $("input[name='repairPhone']").val()
             var repairInfo = $("textarea[name='repairInfo']").val()
             if (!userName || !phone || !repairInfo) {
-                layer.confirm("请填写完整报修信息！", {
-                    btn: ['确定'] //按钮
+                layer.confirm("Please enter the complete repair information!", {
+                    btn: ['OK'] //按钮
                     , icon: 5
                     , anim: 6
-                    , title: '错误信息'
+                    , title: 'Error'
                 }, function (index) {
                     layer.close(index)
                 })
@@ -549,14 +549,14 @@ $(function () {
                 success: function (res) {
                     if (res.code == "0") {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 6
                         }, function () {
                             window.parent.location.reload();    //刷新父页面
                         });
                     } else {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -565,8 +565,8 @@ $(function () {
                     }
                 },
                 error: function (res) {
-                    layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                        btn: ['确定']  //按钮
+                    layer.confirm('Oops! There was a problem with the access!', {
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     }, function (index) {
@@ -589,11 +589,11 @@ $(function () {
             var phone = $("input[name='complaintPhone']").val();
             var textInfo = $("textarea[name='complaintInfo']").val();
             if (!userName || !phone || !textInfo) {
-                layer.confirm("请填写完整投诉信息！", {
-                    btn: ['确定'] //按钮
+                layer.confirm("Please enter the complete complaint information!", {
+                    btn: ['OK'] //按钮
                     , icon: 5
                     , anim: 6
-                    , title: '错误信息'
+                    , title: 'Error'
                 }, function (index) {
                     layer.close(index)
                 })
@@ -615,14 +615,14 @@ $(function () {
                 success: function (res) {
                     if (res.code == "0") {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 6
                         }, function () {
                             window.parent.location.reload();    //刷新父页面
                         });
                     } else {
                         layer.confirm(res.msg, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -631,8 +631,8 @@ $(function () {
                     }
                 },
                 error: function (res) {
-                    layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                        btn: ['确定']  //按钮
+                    layer.confirm('Oops! There was a problem with the access!', {
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     }, function (index) {
@@ -660,11 +660,11 @@ $(function () {
         function verifyLogin() {
             var userId = $("#userId").val();
             if (!userId) {
-                layer.confirm("您还未登录！", {
-                    btn: ['确定'] //按钮
+                layer.confirm("You haven't logged in yet!", {
+                    btn: ['OK'] //按钮
                     , icon: 5
                     , anim: 6
-                    , title: '错误信息'
+                    , title: 'Error'
                 }, function (index) {
                     layer.close(index)
                 })
