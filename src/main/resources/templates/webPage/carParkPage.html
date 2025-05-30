@@ -43,7 +43,7 @@
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <fieldset class="layui-elem-field layui-field-title site-title">
-            <legend><a name="use">车位收费记录表</a></legend>
+            <legend><a name="use">Parking fee record table</a></legend>
         </fieldset>
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -128,7 +128,7 @@
                     , url: url //数据接口
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel information'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
                         , groups: 5 //只显示 5 个连续页码
@@ -138,26 +138,26 @@
                         [
                             [ //表头
                                 {type: 'checkbox'}
-                                , {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
+                                , {type: 'numbers', title: 'No.', width: 60}
+                                , {field: 'id', title: 'Id', width: 120, hide: true}
                                 , {
-                                title: '车位类型', templet: function (row) {
+                                title: 'Parking space type', templet: function (row) {
                                     return `<span>${row.carParkInfo.carParkType}</span>`
                                 }
                             }, {
-                                title: '车位信息', templet: function (row) {
+                                title: 'Parking space info', templet: function (row) {
                                     return `<span>${row.carParkInfo.carParkInfo}</span>`
                                 }
                             }
-                                , {field: 'ownerName', title: '住户姓名'}
-                                , {field: 'phone', title: '住户手机号'}
-                                , {field: 'chargeDate', title: '收费时间', width: '17%'}
+                                , {field: 'ownerName', title: 'Name'}
+                                , {field: 'phone', title: 'Phone number'}
+                                , {field: 'chargeDate', title: 'Pay date', width: '17%'}
                                 , {
-                                field: 'fee', title: '费用', templet: function (row) {
-                                    return `<b>￥&nbsp;${row.fee}</b>`
+                                field: 'fee', title: 'Amount', templet: function (row) {
+                                    return `<b>RM&nbsp;${row.fee}</b>`
                                 }
                             }
-                                , {field: 'readName', title: '收费人'}
+                                , {field: 'readName', title: 'Charging staff'}
                             ]
                         ]
                 })

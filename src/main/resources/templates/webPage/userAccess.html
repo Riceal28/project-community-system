@@ -54,26 +54,38 @@
 
 <script id="typeTemp" type="text/html">
     {{# if(d.type == 0){}}
-    <a class="layui-btn layui-btn-sm">否</a>
+    <a class="layui-btn layui-btn-sm layui-btn-warm">No</a>
+    {{# }}}
+    {{# if(d.type == 0.5){}}
+    <a class="layui-btn layui-btn-sm layui-btn-warm">Partly</a>
     {{# }}}
     {{# if(d.type == 1){}}
-    <a class="layui-btn layui-btn-sm layui-btn-warm">是</a>
+    <a class="layui-btn layui-btn-sm">Fully</a>
     {{# }}}
 </script>
 <script id="typeTemp1" type="text/html">
     {{# if(d.type1 == 0){}}
-    <a class="layui-btn layui-btn-sm">否</a>
+    <a class="layui-btn layui-btn-sm">Low</a>
+    {{# }}}
+    {{# if(d.type1 == 0.5){}}
+    <a class="layui-btn layui-btn-sm">Medium</a>
     {{# }}}
     {{# if(d.type1 == 1){}}
-    <a class="layui-btn layui-btn-sm layui-btn-warm">是</a>
+    <a class="layui-btn layui-btn-sm">High</a>
     {{# }}}
 </script>
 <script id="typeTemp2" type="text/html">
-    {{# if(d.type2 == 0){}}
-    <a class="layui-btn layui-btn-sm" layui-btn-warm>否</a>
-    {{# }}}
     {{# if(d.type2 == 1){}}
-    <a class="layui-btn layui-btn-sm">是</a>
+    <a class="layui-btn layui-btn-sm">Studio</a>
+    {{# }}}
+    {{# if(d.type2 == 21){}}
+    <a class="layui-btn layui-btn-sm">2 bedrooms 1 bathroom</a>
+    {{# }}}
+    {{# if(d.type2 == 22){}}
+    <a class="layui-btn layui-btn-sm">2 bedrooms 2 bathrooms</a>
+    {{# }}}
+    {{# if(d.type2 == 32){}}
+    <a class="layui-btn layui-btn-sm">3 bedrooms 2 bathrooms</a>
     {{# }}}
 </script>
 <script id="image" type="text/html">
@@ -111,7 +123,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '信息'
+                    , title: 'Information'
                     , toolbar: false
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -121,17 +133,17 @@
                     , cols:
                         [
                             [ //表头
-                                {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'userName', title: '姓名'}
-                                , {field: 'phone', title: '联系电话'}
-                                , {title: '健康码', templet: '#image', style: 'height:110px'}
-                                , {title: '行程码', templet: '#image2', style: 'height:110px'}
-                                , {title: '是否疑似病例', templet: '#typeTemp'}
-                                , {title: '是否隔离', templet: '#typeTemp1'}
-                                , {field: 'type2', title: '疫苗接种情况'}
-                                , {field: 'createDate', title: '填报时间'}
-                                , {field: 'desc', title: '备注信息'}
+                                {type: 'numbers', title: 'No.', width: 60}
+                                , {field: 'id', title: 'Id', width: 120, hide: true}
+                                , {field: 'userName', title: 'Name'}
+                                , {field: 'phone', title: 'Phone number'}
+                                , {title: 'House Layout', templet: '#image', style: 'height:110px'}
+                                , {title: 'House Overview', templet: '#image2', style: 'height:110px'}
+                                , {title: 'Furnished or not', templet: '#typeTemp'}
+                                , {title: 'Floor Range', templet: '#typeTemp1'}
+                                , {field: 'type2', title: 'Room Type'}
+                                , {field: 'createDate', title: 'Create date'}
+                                , {field: 'desc', title: 'Description'}
                             ]
                         ]
                 })
@@ -169,7 +181,7 @@
                     area: ['600px', '600px'],
                     shadeClose: true,
                     scrollbar: false,
-                    title: "图片预览", //不显示标题
+                    title: "Picture Preview", //不显示标题
                     content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
                     cancel: function () {
                         //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });

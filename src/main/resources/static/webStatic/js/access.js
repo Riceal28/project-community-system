@@ -22,9 +22,9 @@ layui.use(['table', 'form', 'laydate'], function() {
             limit: 10
         },
         cols: [[
-            {type: 'numbers', title: '序号', width: 60},
-            {field: 'userName', title: '姓名', width: 100},
-            {field: 'phone', title: '电话', width: 120},
+            {type: 'numbers', title: 'No.', width: 60},
+            {field: 'userName', title: 'Name', width: 100},
+            {field: 'phone', title: 'Phone number', width: 120},
             {title: '健康码', templet: '#visitImageTemp', width: 80},
             {title: '行程码', templet: '#visitImage2Temp', width: 80},
             {field: 'type', title: '是否疑似病例', templet: '#visitTypeTemp', width: 120},

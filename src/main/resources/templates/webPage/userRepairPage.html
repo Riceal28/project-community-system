@@ -50,25 +50,25 @@
 </body>
 <script id="solveTemp" type="text/html">
     {{# if(d.isSolve == 0){}}
-    <a class="layui-btn layui-btn-sm layui-btn-danger">未处理</a>
+    <a class="layui-btn layui-btn-sm layui-btn-danger">Unprocessed</a>
     {{# }}}
 
     {{# if(d.isSolve == 1){}}
-    <a class="layui-btn layui-btn-sm">已处理</a>
+    <a class="layui-btn layui-btn-sm">Processed</a>
     {{# }}}
 
     {{# if(d.isSolve == 2){}}
-    <a class="layui-btn layui-btn-sm layui-btn-normal">已反馈</a>
+    <a class="layui-btn layui-btn-sm layui-btn-normal">Feedback received</a>
     {{# }}}
 
     {{# if(d.isSolve == 3){}}
-    <a class="layui-btn layui-btn-sm layui-btn-warm">已分配</a>
+    <a class="layui-btn layui-btn-sm layui-btn-warm">Assigned</a>
     {{# }}}
 </script>
 
 <script id="empName" type="text/html">
     {{# if(d.isSolve == 0){}}
-    <a class="layui-btn layui-btn-sm layui-btn-danger">未分配</a>
+    <a class="layui-btn layui-btn-sm layui-btn-danger">Unallocated</a>
     {{# } else {}}
     <span>{{d.employee.empName}}</span>
     {{# }}}
@@ -76,7 +76,7 @@
 
 <script id="empPhone" type="text/html">
     {{# if(d.isSolve == 0){}}
-    <a class="layui-btn layui-btn-sm layui-btn-danger">未分配</a>
+    <a class="layui-btn layui-btn-sm layui-btn-danger">Unallocated</a>
     {{# } else {}}
     <span>{{d.employee.empPhone}}</span>
     {{# }}}
@@ -84,17 +84,17 @@
 
 <script id="operationBar" type="text/html">
     {{# if(d.isSolve == 0){}}
-    <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">分配员工</a>
+    <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">Assign employees</a>
     {{# }}}
     {{# if(d.isSolve == 3){}}
-    <a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="editFeedMsg">结果反馈</a>
+    <a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="editFeedMsg">Result feedback</a>
     {{# }}}
     {{# if(d.isSolve == 2){}}
-    <a class="layui-btn layui-btn-sm" lay-event="findInfo">查看</a>
-    <a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="editUserMsg">评价</a>
+    <a class="layui-btn layui-btn-sm" lay-event="findInfo">View</a>
+    <a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="editUserMsg">Comment</a>
     {{# }}}
     {{# if(d.isSolve == 1){}}
-    <a class="layui-btn layui-btn-sm" lay-event="findInfo">查看</a>
+    <a class="layui-btn layui-btn-sm" lay-event="findInfo">View</a>
     {{# }}}
 </script>
 
@@ -122,7 +122,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel information'
                     , toolbar: false
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -132,16 +132,16 @@
                     , cols:
                         [
                             [ //表头
-                                { type: 'numbers', title: '序号', width: 60  }
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'userName', title: '住户姓名'}
-                                , {field: 'phone', title: '联系电话'}
-                                , {field: 'repairInfo', title: '报修信息'}
-                                , {field: 'isSolve', title: '是否处理', templet: "#solveTemp", width: 100}
-                                , {field: 'empName', title: '员工姓名', templet: '#empName', width: 110}
-                                , {field: 'empPhone', title: '联系电话', templet: '#empPhone', width: 120}
-                                , {field: 'createDate', title: '投诉时间', width: 170}
-                                , {field: 'caozuo', title: '操作', toolbar:'#operationBar', width: 140}
+                                { type: 'numbers', title: 'No.', width: 60  }
+                                , {field: 'id', title: 'Id', width: 120, hide: true}
+                                , {field: 'userName', title: 'Name'}
+                                , {field: 'phone', title: 'Phone number'}
+                                , {field: 'repairInfo', title: 'Repair Info'}
+                                , {field: 'isSolve', title: 'Processed or not', templet: "#solveTemp", width: 100}
+                                , {field: 'empName', title: 'Staff name', templet: '#empName', width: 110}
+                                , {field: 'empPhone', title: 'Phone number', templet: '#empPhone', width: 120}
+                                , {field: 'createDate', title: 'Complain date', width: 170}
+                                , {field: 'caozuo', title: 'Operation', toolbar:'#operationBar', width: 140}
                             ]
                         ]
                 })
