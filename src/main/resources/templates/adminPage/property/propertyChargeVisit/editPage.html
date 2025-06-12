@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -62,18 +62,18 @@
             <div class="layui-form-item">
                 <div style="display: inline-block">
                     <!-- 抄表人 -->
-                    <label class="layui-form-label">抄表人</label>
+                    <label class="layui-form-label">Meter Reader</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="readName" lay-verify="required" placeholder="请输入抄表人 (必填)"
+                        <input type="text" name="readName" lay-verify="required" placeholder="Please enter the meter reader (required)"
                                autocomplete="off" th:value="${obj.readName}"
                                class="layui-input">
                     </div>
                 </div>
                 <div style="display: inline-block; position: absolute; right: 5px;">
                     <!-- 抄表时间 -->
-                    <label class="layui-form-label">抄表时间</label>
+                    <label class="layui-form-label">Meter reading time</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="readDate" lay-verify="required" placeholder="请选择抄表时间 (必填)"
+                        <input type="text" name="readDate" lay-verify="required" placeholder="Please select meter reading time (required)"
                                autocomplete="off" th:value="${obj.readDate}" readonly
                                class="layui-input" id="readDate">
                     </div>
@@ -84,10 +84,10 @@
             <div class="layui-form-item">
                 <div style="display: inline-block;">
                     <!-- 收费项 -->
-                    <label class="layui-form-label">收费项</label>
+                    <label class="layui-form-label">Charges</label>
                     <div class="layui-input-inline" lay-verify="required">
                         <select name="itemName" class="layui-form-select" lay-filter="itemName">
-                            <option value="">请选择收费项</option>
+                            <option value="">Please select the charge item</option>
                             <option th:value="${item.getId()+'|'+item.getChargeName()}"
                                     th:each="item : ${chargeItems}" th:itemPrice="${item.getItemPrice()}"
                                     th:text="${item.getChargeName()}" th:priceDesc="${item.getPriceDesc()}"
@@ -98,9 +98,9 @@
 
                 <!-- 计算方式 -->
                 <div style="display: inline-block; position: absolute; right: 5px">
-                    <label class="layui-form-label">计费方式</label>
+                    <label class="layui-form-label">Billing method</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="priceDesc" lay-verify="required" placeholder="无需填写"
+                        <input type="text" name="priceDesc" lay-verify="required" placeholder="No need to fill in"
                                autocomplete="off" readonly th:value="${obj.propertyChargeItem.priceDesc}"
                                class="layui-input">
                         <input type="hidden" name="itemPrice" th:value="${obj.propertyChargeItem.itemPrice}">
@@ -112,12 +112,12 @@
             <div class="layui-form-item">
                 <!-- 楼宇号 -->
                 <div style="display: inline-block; position: absolute; right: 5px">
-                    <label class=" layui-form-label">房间信息</label>
+                    <label class=" layui-form-label">Room Information</label>
                     <div class="layui-input-inline">
                         <select name="houseNum" class="layui-form-select" lay-filter="houseNum">
-                            <option value="">选择或输入楼宇信息</option>
+                            <option value="">Select or enter building information</option>
                             <option th:value="${item.getId()+'|'+item.getParentBuilding()+'|'+item.getParentUnit()+'|'+item.getHouseNum()}"
-                                    th:text="${item.getParentBuilding()+'号楼'+item.getParentUnit()+'单元'+item.getHouseNum()}"
+                                    th:text="${'Building No. '+item.getParentBuilding()+' Unit '+item.getParentUnit()+' '+item.getHouseNum()}"
                                     th:each="item : ${houseInfos}" th:selected="${item.id == obj.houseId}"></option>
                         </select>
                     </div>
@@ -125,9 +125,9 @@
 
                 <!-- 户主姓名 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">户主姓名</label>
+                    <label class="layui-form-label">Householder name</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="userName" lay-verify="required" placeholder="户主姓名 (选择房间信息自动识别)"
+                        <input type="text" name="userName" lay-verify="required" placeholder="Householder name"
                                autocomplete="off" readonly th:value="${obj.userName}"
                                class="layui-input">
                     </div>
@@ -138,9 +138,9 @@
             <div class="layui-form-item">
                 <!-- 房屋面积 -->
                 <div style="display: inline-block; position: absolute; right: 5px">
-                    <label class="layui-form-label">房屋面积</label>
+                    <label class="layui-form-label">House area</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="houseArea" lay-verify="required" placeholder="选择房间信息自动识别"
+                        <input type="text" name="houseArea" lay-verify="required" placeholder="House area"
                                autocomplete="off" readonly th:value="${obj.houseInfo.houseArea}"
                                class="layui-input">
                     </div>
@@ -148,9 +148,9 @@
 
                 <!-- 户主电话 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">户主电话</label>
+                    <label class="layui-form-label">Phone number of householder</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="phone" lay-verify="required" placeholder="户主电话 (选择房间信息自动识别)"
+                        <input type="text" name="phone" lay-verify="required" placeholder="Phone number of householder"
                                autocomplete="off" readonly th:value="${obj.phone}"
                                class="layui-input">
                     </div>
@@ -161,9 +161,9 @@
             <div class="layui-form-item">
                 <!-- 上月读数 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">上次读数</label>
+                    <label class="layui-form-label">Last reading</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="prevMonthCount" lay-verify="required" placeholder="上月读数 (自动识别上月表的记录)"
+                        <input type="text" name="prevMonthCount" lay-verify="required" placeholder="Last month's readings (automatically identify)"
                                autocomplete="off" readonly th:value="${obj.prevMonthCount == null ? '' : obj.prevMonthCount}"
                                class="layui-input">
                     </div>
@@ -171,9 +171,9 @@
 
                 <!-- 本月读数 -->
                 <div style="display: inline-block; position: absolute; right: 5px">
-                    <label class="layui-form-label">本次读数</label>
+                    <label class="layui-form-label">This reading</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="currMonthCount" lay-verify="required" placeholder="本月度数 (选填 本月表的记录)"
+                        <input type="text" name="currMonthCount" lay-verify="required" placeholder="This month's readings (optional)"
                                autocomplete="off" th:value="${obj.currMonthCount == null ? '' : obj.currMonthCount}"
                                class="layui-input">
                     </div>
@@ -184,9 +184,9 @@
             <div class="layui-form-item">
                 <!-- 用量 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">本次用量</label>
+                    <label class="layui-form-label">This usage</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="useCount" lay-verify="required" placeholder="本月用量 (自动计算)"
+                        <input type="text" name="useCount" lay-verify="required" placeholder="Monthly Usage (Automatically Calculated)"
                                autocomplete="off" th:value="${obj.useCount == null ? '' : obj.useCount}"
                                class="layui-input">
                     </div>
@@ -194,9 +194,9 @@
 
                 <!-- 要缴纳的费用 -->
                 <div style="display: inline-block; position: absolute; right: 5px">
-                    <label class="layui-form-label">本次费用</label>
+                    <label class="layui-form-label">This fee</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="showPrice" lay-verify="required" placeholder="缴纳的费用 (输入用量自动识别)"
+                        <input type="text" name="showPrice" lay-verify="required" placeholder="Fees to pay (automatically identified)"
                                autocomplete="off" readonly th:value="${obj.price}"
                                class="layui-input">
                         <input type="hidden" name="price" th:value="${obj.price}">
@@ -207,8 +207,8 @@
     </div>
 
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="清空">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -303,7 +303,7 @@
                 console.log(houseId);
                 console.log(houseId && !houseArea);
                 if(houseId && !houseArea) {
-                    layer.msg('该房间是空房！', {
+                    layer.msg('This room is empty!', {
                         icon: 5
                         , time: 1500
                     })
@@ -315,7 +315,7 @@
                     // 赋值价格（将分换算为元）
                     $("input[name='price']").val(price);          // 真正保存价格的隐藏表单
                     // 用于显示的表单，带上了单位，如果不这样做，提交表单时会因为类型不同而不能让MVC自动封装参数
-                    $("input[name='showPrice']").val((price / 100) + "元");
+                    $("input[name='showPrice']").val((price / 100) + "RM");
                 }
             } else if(houseNum) {
                 // 查询读数信息
@@ -338,7 +338,7 @@
                                 $("input[name='userName']").val('');
                                 $("input[name='phone']").val('');
                                 $("input[name='houseArea']").val('');
-                                layer.msg('该房间是空房！', {
+                                layer.msg('This room is empty!', {
                                     icon: 5
                                     , time: 1500
                                 })
@@ -387,7 +387,7 @@
                         // 判断房屋是否已售出
                         if(res.data.houseInfo.ownerName) {
                             // 判断是否是物业费
-                            if(itemName.indexOf("物业费") != -1) {
+                            if(itemName.indexOf("Property Fees") != -1) {
                                 // 查询成功，绑定需要的信息
                                 $("input[name='userName']").val(res.data.houseInfo.ownerName);
                                 $("input[name='phone']").val(res.data.houseInfo.phone);
@@ -399,7 +399,7 @@
                                 // 赋值价格（将分换算为元）
                                 $("input[name='price']").val(price);          // 真正保存价格的隐藏表单
                                 // 用于显示的表单，带上了单位，如果不这样做，提交表单时会因为类型不同而不能让MVC自动封装参数
-                                $("input[name='showPrice']").val((price / 100) + "元");
+                                $("input[name='showPrice']").val((price / 100) + "RM");
                             } else {
                                 // 如果不是物业费，则表示返回的信息中还带了上月读数的信息，需要取出
                                 $("input[name='userName']").val(res.data.houseInfo.ownerName);
@@ -412,7 +412,7 @@
                             $("input[name='userName']").val('');
                             $("input[name='phone']").val('');
                             $("input[name='houseArea']").val('');
-                            layer.msg('该房间是空房！', {
+                            layer.msg('This room is empty!', {
                                 icon: 5
                                 , time: 1500
                             })
@@ -476,7 +476,7 @@
                 // 如果flag不为空就是验证不通过
                 if (flag) {
                     layer.confirm(flag, {
-                        btn: ['确定']  //按钮
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     });
@@ -501,14 +501,14 @@
                     success: function (rollData) {
                         if (rollData.code == 0) {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -518,8 +518,8 @@
                         }
                     },
                     error: function (res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -545,18 +545,18 @@
             var useCount = $("input[name='useCount']").val();       // 用量
             // 非空验证
             if (!houseNum || !itemName || !readName || !readDate) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
             // 如果是物业费，则读数和用量可以为空
-            if(itemName.indexOf("物业费") < 0) {
+            if(itemName.indexOf("Property Fees") < 0) {
                 // 不是物业费，则验证读数是否为空
                 if(!currMonthCount) {
-                    return "收费项不为物业费时，本月读数不能为空！";
+                    return "If the charge item is not property fee, the reading for this month cannot be empty!";
                 }
             } else {
                 // 是物业费，则读数必须为空
                 if(currMonthCount) {
-                    return "收费项为物业费时，本月读数不可输入！";
+                    return "When the charge item is property fee, the reading for this month cannot be entered!";
                 }
             }
             // 本月读数不为空则验证是否是合法数字
@@ -564,7 +564,7 @@
                 return checkNumber(currMonthCount);
             }
             if(useCount < 0) {
-                return "数据输入有误！请检查！";
+                return "The data you entered is incorrect! Please check!";
             }
         }
     });

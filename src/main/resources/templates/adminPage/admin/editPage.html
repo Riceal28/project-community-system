@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -53,25 +53,25 @@
     <div id="product_info" style="width:100%">
 
         <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
+            <label class="layui-form-label">Username</label>
             <div class="layui-input-inline">
-                <input type="text" name="userName" lay-verify="required" placeholder="请填写用户名 (必填)" autocomplete="off"
+                <input type="text" name="userName" lay-verify="required" placeholder="Please fill in username (required)" autocomplete="off"
                        class="layui-input" th:value="${obj.userName}">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">真实姓名</label>
+            <label class="layui-form-label">Real name</label>
             <div class="layui-input-inline">
-                <input type="text" name="loginName" lay-verify="required" placeholder="请填写真实姓名 (必填)" autocomplete="off"
+                <input type="text" name="loginName" lay-verify="required" placeholder="Please fill in real name (required)" autocomplete="off"
                        class="layui-input" th:value="${obj.loginName}">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">新的密码</label>
+            <label class="layui-form-label">New password</label>
             <div class="layui-input-inline">
-                <input type="password" name="password" lay-verify="required" placeholder="请填写密码 (必填)" autocomplete="off"
+                <input type="password" name="password" lay-verify="required" placeholder="Please enter password (required)" autocomplete="off"
                        class="layui-input" readonly>
             </div>
         </div>
@@ -79,8 +79,8 @@
     </div>
     
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="清空">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -119,7 +119,7 @@
                 // 如果flag不为空就是验证不通过
                 if(flag) {
                     layer.confirm(flag, {
-                        btn: ['确定']  //按钮
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     });
@@ -143,14 +143,14 @@
                     success: function(rollData) {
                         if (rollData.code == "0") {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -160,8 +160,8 @@
                         }
                     },
                     error: function(res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -186,7 +186,7 @@
             var reFloat = /^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/;
             // 非空验证
             if(!userName || !loginName || !password) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
         }
     });

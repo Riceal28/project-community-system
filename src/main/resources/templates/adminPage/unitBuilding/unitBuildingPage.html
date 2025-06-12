@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.2</title>
+    <title>Welcome Page-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -57,13 +57,13 @@
 </body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm iconfont layui-btn-normal" lay-event="add">&#xe6b9; 添加</button>
-        <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="del">&#xe69d; 删除</button>
+        <button class="layui-btn layui-btn-sm iconfont layui-btn-normal" lay-event="add">&#xe6b9; Add</button>
+        <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="del">&#xe69d; Delete</button>
     </div>
 </script>
 
 <script id="operationBar" type="text/html">
-    <button class="layui-btn layui-btn-xs iconfont layui-btn-warm" lay-event="edit">&#xe69e; 修改</button>
+    <button class="layui-btn layui-btn-xs iconfont layui-btn-warm" lay-event="edit">&#xe69e; Modify</button>
 </script>
 
 <script>
@@ -91,7 +91,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '楼宇信息'
+                    , title: 'Building Information'
                     , toolbar: '#toolbarDemo'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -102,11 +102,11 @@
                         [
                             [ //表头
                                 {type: 'checkbox', fixed: 'left', unresize: true}
-                                , {field: 'id', title: '主键标识', sort: true}
-                                , {field: 'buildingNum', title: '楼宇号', sort: true, templet:'<div>{{d.buildingNum}}号楼</div>'}
-                                , {field: 'unitCount', title: '单元数量', sort: true, templet:'<div>{{d.unitCount}}单元</div>'}
-                                , {field: 'floorCount', title: '最大楼层', sort: true, templet:'<div>{{d.floorCount}}层</div>'}
-                                , {field: 'caozuo', title: '操作', toolbar:'#operationBar'}
+                                , {field: 'id', title: 'Primary key identifier', sort: true}
+                                , {field: 'buildingNum', title: 'Building No.', sort: true, templet:'<div>Building No. {{d.buildingNum}}</div>'}
+                                , {field: 'unitCount', title: 'Number of units', sort: true, templet:'<div>Unit {{d.unitCount}}</div>'}
+                                , {field: 'floorCount', title: 'Maximum floor', sort: true, templet:'<div>Floor {{d.floorCount}}</div>'}
+                                , {field: 'caozuo', title: 'Operation', toolbar:'#operationBar'}
                             ]
                         ]
                 })
@@ -121,7 +121,7 @@
                 switch (obj.event) {
                     case 'add':
                         // 跳转新增页面
-                        toWindow("../building/toAddWindow", "新增楼宇信息", "400px", "280px");
+                        toWindow("../building/toAddWindow", "Add building information", "400px", "280px");
                         break;
                     //自定义头工具栏右侧图标 - 提示
                     case 'del':
@@ -137,7 +137,7 @@
                     case 'edit':
                         var id = obj.data.id;
                         // 跳转修改页面
-                        toWindow("../building/toEditWindow?id=" + id, "修改楼宇信息", "350px", "280px");
+                        toWindow("../building/toEditWindow?id=" + id, "Modify building information", "350px", "280px");
                         break;
                 }
             });

@@ -104,7 +104,7 @@ public class SystemController {
         // 调用登陆方法
         Admin resultAdmin = adminService.selectByLogin(admin);
         if (resultAdmin == null) {
-            model.addAttribute("msg", "密码或账户有误！登录失败！");
+            model.addAttribute("msg", "The password or account is incorrect! Login failed!");
             return "login";
         }
         session.setAttribute("loginAdmin", resultAdmin);
@@ -122,8 +122,8 @@ public class SystemController {
                 subMenu.add(menu);
             }
         }
-        System.out.println("该管理员拥有的一级菜单" + parentMenu.toString());
-        System.out.println("该管理员拥有的二级菜单" + subMenu.toString());
+        System.out.println("The first level menu owned by the administrator" + parentMenu.toString());
+        System.out.println("The second level menu owned by the administrator" + subMenu.toString());
         // 存放菜单信息
         session.setAttribute("parentMenu", parentMenu);
         session.setAttribute("subMenu", subMenu);
@@ -186,7 +186,7 @@ public class SystemController {
             // 判断文件是否为空
             System.out.println(file.getSize());
             if (file.isEmpty() || file.getSize() <= 0) {
-                return new ResultMessage(207, "上传文件为空！");
+                return new ResultMessage(207, "The uploaded file is empty!");
             }
             // 获取上传文件的名字
             fileName = imgName + ".jpg";
@@ -202,9 +202,9 @@ public class SystemController {
             file.transferTo(dest);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultMessage(500, "出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Exception occurred:" + e.getMessage());
         }
-        return new ResultMessage(0, "上传成功！", result);
+        return new ResultMessage(0, "Upload successful!", result);
     }
 
     // | -------------------------------------------------------------------------------
@@ -284,10 +284,10 @@ public class SystemController {
         User userResult = userService.selectLoginByParam(user);
         if (userResult == null || userResult.getId() == null) {
             // 输入的信息有误
-            return new ResultMessage(500, "登录失败！输入的信息不存在！");
+            return new ResultMessage(500, "Login failed! The input information does not exist!");
         } else {
             request.getSession().setAttribute("webUser", userResult);
-            return new ResultMessage(0, "登录成功！");
+            return new ResultMessage(0, "Login successful!");
         }
     }
 
@@ -738,7 +738,7 @@ public class SystemController {
         }
         split[2] = "01";
         String readDateStr = split[0] + "-" + split[1] + "-" + split[2] + " 00:00:00";
-        System.out.println("转换后的抄表时间" + readDateStr);
+        System.out.println("Converted meter reading time" + readDateStr);
         model.addObject("readDate", readDateStr);
         return model;
     }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -51,37 +51,37 @@
     <div id="product_info" style="width:100%">
         <!-- 车位类型 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">车位类型</label>
+            <label class="layui-form-label">Space type</label>
             <div class="layui-input-inline" lay-verify="required" >
                 <select name="carParkType" id="carParkType" lay-verify="required" lay-search disabled>
-                    <option value="">请选择车位类型 (必填)</option>
-                    <option value="地下停车位" th:selected="${obj.carParkType == '地下停车位'}">地下停车位</option>
-                    <option value="地面停车位" th:selected="${obj.carParkType == '地面停车位'}">地面停车位</option>
+                    <option value="">Please select the parking space type (required)</option>
+                    <option value="Underground" th:selected="${obj.carParkType == 'Underground'}">Underground</option>
+                    <option value="Ground" th:selected="${obj.carParkType == 'Ground'}">Ground</option>
                 </select>
             </div>
         </div>
         <!-- 业主名 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">业主名</label>
+            <label class="layui-form-label">Owner Name</label>
             <div class="layui-input-inline" lay-verify="required" >
-                <input class="layui-input" autocomplete="off" placeholder="请填写业主名 (选填如售出则必填)"
+                <input class="layui-input" autocomplete="off" placeholder="Please fill in the owner's name (optional, required if sold)"
                        name="ownerName" th:value="${userInfo.userName}" readonly>
             </div>
         </div>
         <!-- 联系电话 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">联系电话</label>
+            <label class="layui-form-label">Phone number</label>
             <div class="layui-input-inline">
-                <input type="text" name="phone" lay-verify="required" placeholder="请填写联系电话 (选填如售出则必填)" autocomplete="off"
+                <input type="text" name="phone" lay-verify="required" placeholder="Please fill in the phone number (optional, required if sold)" autocomplete="off"
                        class="layui-input" th:value="${userInfo.phone}" readonly>
             </div>
         </div>
         <!-- 是否售出 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">是否售出</label>
+            <label class="layui-form-label">Sold or not</label>
             <div class="layui-input-inline">
-                <input type="radio" name="parkState" value="0" title="未售出" disabled>
-                <input type="radio" name="parkState" value="1" title="已售出" checked disabled>
+                <input type="radio" name="parkState" value="0" title="Unsold" disabled>
+                <input type="radio" name="parkState" value="1" title="Sold" checked disabled>
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
     <input type="hidden" name="id" th:value="${obj.id}">
 
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="确认购买" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="button" value="Confirm purchase" name="submit" class="layui-btn addBtn layui-btn-normal">
     </div>
 </form>
 
@@ -124,7 +124,7 @@
                 // 如果flag不为空就是验证不通过
                 if(flag) {
                     layer.confirm(flag, {
-                        btn: ['确定']  //按钮
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     });
@@ -151,14 +151,14 @@
                     success: function(rollData) {
                         if (rollData.code == "0") {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -168,8 +168,8 @@
                         }
                     },
                     error: function(res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -194,19 +194,19 @@
             var rePhone = /^1[3456789]\d{9}$/;
             // 非空验证
             if(!carParkType) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
             // 如果是已售出， 必须填写业主和联系电话
             if(parkState == 1) {
                 if(!ownerName || !phone) {
-                    return "请认真点, 将所有必填数据填写完整! ";
+                    return "Please be careful and fill in all required data!";
                 }
                 if(!rePhone.test(phone)) {
-                    return "手机号格式有误! ";
+                    return "The phone number format is incorrect!";
                 }
             } else if(parkState == 0) {
                 if(ownerName || phone) {
-                    return "该车位还未售出! 不可填写业主信息! ";
+                    return "This parking space has not been sold yet! The owner's information cannot be filled in!";
                 }
             }
         }

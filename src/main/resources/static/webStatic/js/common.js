@@ -21,11 +21,11 @@ $(function(){
 			var userName = $("input[name='userName']").val();
 			var password = $("input[name='password']").val();
 			if(!password || !userName) {
-				layer.confirm("请填写完整信息！", {
-					btn: ['确定'] //按钮
+				layer.confirm("Please fill in the complete information！", {
+					btn: ['OK'] //按钮
 					, icon: 5
 					, anim: 6
-					, title: '错误信息'
+					, title: 'error message'
 				}, function (index) {
 					layer.close(index)
 				})
@@ -45,14 +45,14 @@ $(function(){
 				success: function(res) {
 					if (res.code == "0") {
 						layer.confirm(res.msg, {
-							btn: ['确定']  //按钮
+							btn: ['OK']  //按钮
 							, icon: 6
 						}, function () {
 							window.parent.location.reload();    //刷新父页面
 						});
 					} else {
 						layer.confirm(res.msg, {
-							btn: ['确定']  //按钮
+							btn: ['OK']  //按钮
 							, icon: 5
 							, anim: 6
 						}, function (index) {
@@ -61,8 +61,8 @@ $(function(){
 					}
 				},
 				error: function(res) {
-					layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-						btn: ['确定']  //按钮
+					layer.confirm('Oops! There was a problem with the access!', {
+						btn: ['OK']  //按钮
 						, icon: 5
 						, anim: 6
 					}, function (index) {

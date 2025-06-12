@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -56,8 +56,8 @@
         </div>
         <hr>
         <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px; ">
-            评价
-            <button class="layui-btn layui-btn-xs layui-btn-normal" id="createComment" style="font-weight: normal; float: right">发表评论</button>
+            Comment
+            <button class="layui-btn layui-btn-xs layui-btn-normal" id="createComment" style="font-weight: normal; float: right">Make a comment</button>
             <div style="clear: both"></div>
         </div>
         <div>
@@ -66,7 +66,7 @@
                     <div class="layui-col-md12">
                         <div class="layui-card">
                             <div class="layui-card-header layui-row">
-                                <div style="width: 49%; display: inline-block" th:text="${'评价人：' + item.user.userName}"></div>
+                                <div style="width: 49%; display: inline-block" th:text="${'Commentator：' + item.user.userName}"></div>
                                 <div style="width: 49%; display: inline-block; font-size: 12px; color: #777; text-align: right"
                                      th:text="${item.createDate}"></div>
                             </div>
@@ -108,7 +108,7 @@
                 // 如果flag不为空就是验证不通过
                 if(flag) {
                     layer.confirm(flag, {
-                        btn: ['确定']  //按钮
+                        btn: ['OK']  //按钮
                         , icon: 5
                         , anim: 6
                     });
@@ -132,14 +132,14 @@
                     success: function(rollData) {
                         if (rollData.code == "0") {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -149,8 +149,8 @@
                         }
                     },
                     error: function(res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -171,7 +171,7 @@
             var content = $("textarea[name='content']").val();
             // 非空验证
             if(!title || !content) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
         }
     });

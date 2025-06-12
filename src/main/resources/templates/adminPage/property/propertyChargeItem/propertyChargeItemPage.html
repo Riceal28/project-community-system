@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.2</title>
+    <title>Welcome Page-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -53,9 +53,9 @@
 </body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm iconfont layui-btn-normal" lay-event="add">&#xe6b9; 添加</button>
-        <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="del">&#xe69d; 删除</button>
-        <button class="layui-btn layui-btn-sm iconfont layui-btn-warm" lay-event="tips">&#xe6a3; 修改</button>
+        <button class="layui-btn layui-btn-sm iconfont layui-btn-normal" lay-event="add">&#xe6b9; Add</button>
+        <button class="layui-btn layui-btn-sm iconfont layui-btn-danger" lay-event="del">&#xe69d; Delete</button>
+        <button class="layui-btn layui-btn-sm iconfont layui-btn-warm" lay-event="tips">&#xe6a3; Modify</button>
     </div>
 </script>
 
@@ -84,7 +84,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel Information'
                     , toolbar: '#toolbarDemo'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -95,12 +95,12 @@
                         [
                             [ //表头
                                 {type: 'checkbox',fixed: 'left'}
-                                , { type: 'numbers', title: '序号', width: 60  }
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'chargeName', title: '收费项名称', edit: true}
-                                , {field: 'itemPrice', title: '项目单价', edit: true, templet: '<div>{{d.itemPrice / 100}}元</div>'}
-                                , {field: 'priceDesc', title: '计费描述', edit: true}
-                                , {field: 'createDate', title: '创建时间', sort: true}
+                                , { type: 'numbers', title: 'Serial number', width: 60  }
+                                , {field: 'id', title: 'Primary key identifier', width: 120, hide: true}
+                                , {field: 'chargeName', title: 'Charge item', edit: true}
+                                , {field: 'itemPrice', title: 'Price', edit: true, templet: '<div>{{d.itemPrice / 100}}元</div>'}
+                                , {field: 'priceDesc', title: 'Description', edit: true}
+                                , {field: 'createDate', title: 'Creation time', sort: true}
                             ]
                         ]
                 })
@@ -114,7 +114,7 @@
                 var dataId = getIds(data);          //data是选中的所有数据，得到的是一个数组，将这个数组传入getIds方法进行处理
                 switch (obj.event) {
                     case 'add':
-                        toWindow("../propertyChargeItem/toAddWindow", "新增收费项目", "400px", "380px");
+                        toWindow("../propertyChargeItem/toAddWindow", "New charges", "400px", "380px");
                         break;
                     //自定义头工具栏右侧图标 - 提示
                     case 'del':
@@ -122,9 +122,9 @@
                         deleteInfo(selectCount, dataId, "deleteInfo?ids=" + dataId);
                         break;
                     case 'tips':
-                        layer.confirm("修改时可以直接单击要修改的单元格进行修改。<br/><span style='color:red;'>注意：</span>" +
-                            "在修改单价时填入的价格单位为分。<br/>例如 1元 = 100分", {
-                            btn: ['确定']  //按钮
+                        layer.confirm("You can directly click the cell you want to modify.<br/><span style='color:red;'>Notice:</span>" +
+                            "The price unit to be entered is cents.<br/>For example, 1 RM = 100 cents", {
+                            btn: ['OK']  //按钮
                             , icon: 3
                         });
                         break;
@@ -155,7 +155,7 @@
                         }
                     },
                     error: function(res) {
-                        layer.msg('啊哦！访问出问题了！请联系维护人员！', {
+                        layer.msg('Oops! There was a problem with the access!', {
                             icon: 5
                         });
                     }

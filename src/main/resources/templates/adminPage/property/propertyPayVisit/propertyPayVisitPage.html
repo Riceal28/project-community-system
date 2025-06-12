@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.2</title>
+    <title>Welcome Page-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -47,10 +47,10 @@
                         <input type="hidden" name="clientName" th:value="${clientName}">
                         <!-- 根据渠道名查询 -->
                         <div class="layui-inline layui-show-xs-block layui-form-item">
-                            <label class="layui-form-label">收费项</label>
+                            <label class="layui-form-label">Charges</label>
                             <div class="layui-input-inline">
                                 <select name="itemName" lay-search>
-                                    <option value="">选择或输入收费项</option>
+                                    <option value="">Select or enter a charge item</option>
                                     <option th:value="${item.chargeName}" th:each="item:${itemList}"
                                             th:text="${item.chargeName}"></option>
                                 </select>
@@ -108,8 +108,8 @@
                 // 如果只选择结束时间不选择开始时间, 则参数有误, 不可进行查询
                 if (!start && end) {
                     layer.open({
-                        title: '错误消息'
-                        , content: '抱歉…不可以只选择结束时间不选择开始时间！'
+                        title: 'Error message'
+                        , content: 'You cannot select only the end time without selecting the start time!'
                         , shade: 0.1
                         , icon: 5
                         , anim: 6
@@ -136,7 +136,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel Information'
                     , toolbar: true
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
@@ -146,20 +146,20 @@
                     , cols:
                         [
                             [ //表头
-                                {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'chargeId', title: '收费项ID', hide: true}
-                                , {field: 'itemName', title: '收费项名称'}
+                                {type: 'numbers', title: 'Serial number', width: 60}
+                                , {field: 'id', title: 'Primary key identifier', width: 120, hide: true}
+                                , {field: 'chargeId', title: 'Charge item ID', hide: true}
+                                , {field: 'itemName', title: 'Charge item'}
                                 , {
                                 field: 'buildingNum',
-                                title: '房间信息',
-                                templet: '<div>{{d.buildingNum}}号楼{{d.unitNum}}单元{{d.houseNum}}</div>'
+                                title: 'Room Information',
+                                templet: '<div>Building No. {{d.buildingNum}} Unit {{d.unitNum}} {{d.houseNum}}</div>'
                             }
-                                , {field: 'clientName', title: '户主姓名'}
-                                , {field: 'payType', title: '缴费方式'}
-                                , {field: 'payMoney', title: '缴费金额', templet: '<div>{{d.payMoney / 100}}元</div>'}
-                                , {field: 'payDate', title: '收费时间'}
-                                , {field: 'chargePerson', title: '收费人员'}
+                                , {field: 'clientName', title: 'Householder name'}
+                                , {field: 'payType', title: 'Payment Methods'}
+                                , {field: 'payMoney', title: 'Amount', templet: '<div>{{d.payMoney / 100}}RM</div>'}
+                                , {field: 'payDate', title: 'Charging time'}
+                                , {field: 'chargePerson', title: 'Fee-charging staff'}
                             ]
                         ]
                 })
@@ -188,7 +188,7 @@
                                     updateInfo(selectCount, dataId, "channel");
                                 } else if (res.code == "207") {
                                     layer.confirm(res.msg, {
-                                        btn: ['确定'] //按钮
+                                        btn: ['OK'] //按钮
                                         , icon: 7
                                         , anim: 6
                                     }, function () {
@@ -214,15 +214,15 @@
                     // 导出全部
                     case 'exportExcelAll':
                         if (totalCount > 5000) {
-                            layer.confirm('检测到您要导出的数据已经达到<span style="color: red">' + totalCount + '条</span>, ' +
-                                '大量数据导出会降低系统性能, ' +
-                                '为了节省您的宝贵时间推荐您进行查询筛选后使用<span style="color: red">导出本页</span>功能, ' +
-                                '如果执意导出全部请点击继续…', {
-                                btn: ['继续导出', '取消导出'] //按钮
+                            layer.confirm('The data you want to export has reached<span style="color: red">' + totalCount + 'piece</span>, ' +
+                                'Exporting a large amount of data will reduce system performance.' +
+                                'In order to save your valuable time, it is recommended that you use the<span style="color: red">export this page</span>function, ' +
+                                'If you insist on exporting all, please click Continue', {
+                                btn: ['Continue exporting', 'Cancel export'] //按钮
                                 , shade: 0.3
                                 , anim: 6
                                 , closeBtn: 0
-                                , title: '温馨提示'
+                                , title: 'Tips'
                             }, function (index) {
                                 // 确定
                                 layer.close(index);

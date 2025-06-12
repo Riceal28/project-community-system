@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.2</title>
+    <title>Welcome Page-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -86,7 +86,7 @@
             </div>
         </div>
         <fieldset class="layui-elem-field layui-field-title site-title">
-            <legend><a name="use">车位收费记录表</a></legend>
+            <legend><a name="use">Parking fee record table</a></legend>
         </fieldset>
         <div class="layui-col-md12">
             <div class="layui-card">
@@ -136,7 +136,7 @@
 </div>
 </body>
 <script id="operationBar" type="text/html">
-    <button class="layui-btn layui-btn-sm iconfont" lay-event="sold">&#xe702; 收费</button>
+    <button class="layui-btn layui-btn-sm iconfont" lay-event="sold">&#xe702; Charge</button>
 </script>
 
 <script>
@@ -175,7 +175,7 @@
                     , defaultToolbar: ['filter']
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel information'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
                         , groups: 5 //只显示 5 个连续页码
@@ -185,11 +185,11 @@
                         [
                             [ //表头
                                 {type: 'checkbox'}
-                                , {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
-                                , {field: 'carParkType', title: '车位类型'}
-                                , {field: 'carParkInfo', title: '车位信息'}
-                                , {field: 'caozuo', title: '操作', toolbar: '#operationBar'}
+                                , {type: 'numbers', title: 'Serial Number', width: 60}
+                                , {field: 'id', title: 'Primary key identifier', width: 120, hide: true}
+                                , {field: 'carParkType', title: 'Space type'}
+                                , {field: 'carParkInfo', title: 'Information'}
+                                , {field: 'caozuo', title: 'Operation', toolbar: '#operationBar'}
                             ]
                         ]
                 })
@@ -203,7 +203,7 @@
                 var dataId = getIds(data);          //data是选中的所有数据，得到的是一个数组，将这个数组传入getIds方法进行处理
                 switch (obj.event) {
                     case 'add':
-                        toWindow("toCarParkAddWindow", "新增车位信息", "400px", "330px");
+                        toWindow("toCarParkAddWindow", "Add parking space information", "400px", "330px");
                         break;
                     //自定义头工具栏右侧图标 - 提示
                     case 'del':
@@ -220,13 +220,13 @@
                         // 获取本条信息的数据
                         var id = obj.data.id;
                         // 跳转到修改页面
-                        toWindow("toCarParkEditWindow?type=edit&id=" + id, "修改车位信息", "400px", "330px")
+                        toWindow("toCarParkEditWindow?type=edit&id=" + id, "Modify parking space information", "400px", "330px")
                         break;
                     case 'sold':
                         // 获取本条信息的数据
                         var id = obj.data.id;
                         // 跳转到售出页面
-                        toWindow("toCarParkEditWindow?type=sold&id=" + id, "填写业主信息", "750px", "500px")
+                        toWindow("toCarParkEditWindow?type=sold&id=" + id, "Fill in the owner information", "750px", "500px")
                         break;
                 }
             });
@@ -253,7 +253,7 @@
                     , url: url //数据接口
                     , loading: true
                     , limit: 20
-                    , title: '渠道信息'
+                    , title: 'Channel Information'
                     , page: {
                         layout: ['limit', 'count', 'prev', 'page', 'next', 'skip', 'refresh'] //自定义分页布局
                         , groups: 5 //只显示 5 个连续页码
@@ -263,29 +263,29 @@
                         [
                             [ //表头
                                 {type: 'checkbox'}
-                                , {type: 'numbers', title: '序号', width: 60}
-                                , {field: 'id', title: '主键标识', width: 120, hide: true}
+                                , {type: 'numbers', title: 'Serial number', width: 60}
+                                , {field: 'id', title: 'Primary key identifier', width: 120, hide: true}
                                 , {
-                                title: '车位类型', templet: function (row) {
+                                title: 'Space type', templet: function (row) {
                                     return `<span>${row.carParkInfo.carParkType}</span>`
                                 }
                             }, {
-                                title: '车位信息', templet: function (row) {
+                                title: 'Information', templet: function (row) {
                                     return `<span>${row.carParkInfo.carParkInfo}</span>`
                                 }
                             }
-                                , {field: 'ownerName', title: '住户姓名'}
-                                , {field: 'phone', title: '住户手机号'}
-                                , {field: 'chargeDate', title: '收费时间', width: '17%'}
+                                , {field: 'ownerName', title: 'Name'}
+                                , {field: 'phone', title: 'Phone number'}
+                                , {field: 'chargeDate', title: 'Charging time', width: '17%'}
                                 , {
-                                field: 'fee', title: '费用', templet: function (row) {
-                                    return `<b>￥&nbsp;${row.fee}</b>`
+                                field: 'fee', title: 'Fee', templet: function (row) {
+                                    return `<b>RM&nbsp;${row.fee}</b>`
                                 }
                             },
                                 {
-                                    field: 'payType', title: '缴费方式',
+                                    field: 'payType', title: 'Payment Methods',
                                 }
-                                , {field: 'readName', title: '收费人'}
+                                , {field: 'readName', title: 'Fee-charging staff'}
                             ]
                         ]
                 })

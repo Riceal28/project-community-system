@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增</title>
+    <title>Add</title>
     <link rel="stylesheet" th:href="@{/adminStatic/layui/css/layui.css}">
     <script th:src="@{/webjars/layui/2.5.6/layui.js}" src="" type="text/javascript"></script>
     <script th:src="@{/webjars/jquery/3.5.1/jquery.js}" src="" type="text/javascript"></script>
@@ -55,20 +55,20 @@
     <div id="product_info" style="width:100%">
         <!-- 车位类型 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">车位类型</label>
+            <label class="layui-form-label">Space type</label>
             <div class="layui-input-inline" lay-verify="required">
                 <select name="carParkType" id="carParkType" lay-verify="required" lay-search disabled>
-                    <option value="">请选择车位类型 (必填)</option>
-                    <option value="地下停车位" th:selected="${obj.carParkType == '地下停车位'}">地下停车位</option>
-                    <option value="地面停车位" th:selected="${obj.carParkType == '地面停车位'}">地面停车位</option>
+                    <option value="">Please select the parking space type (required)</option>
+                    <option value="Underground" th:selected="${obj.carParkType == 'Underground'}">Underground</option>
+                    <option value="Ground" th:selected="${obj.carParkType == 'Ground'}">Ground</option>
                 </select>
             </div>
         </div>
         <!-- 车位信息 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">车位信息</label>
+            <label class="layui-form-label">Information</label>
             <div class="layui-input-inline" lay-verify="required">
-                <input class="layui-input" autocomplete="off" lay-verify="required" placeholder="请填写车位信息"
+                <input class="layui-input" autocomplete="off" lay-verify="required" placeholder="Please fill in the parking space information"
                        name="carParkInfo" th:value="${obj.carParkInfo}">
             </div>
         </div>
@@ -77,8 +77,8 @@
     <input type="hidden" name="id" th:value="${obj.id}">
 
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="还原">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -91,17 +91,17 @@
         <div class="layui-form-item">
             <!-- 车位类型 -->
             <div class="layui-form-item" style="display: inline-block;">
-                <label class="layui-form-label">车位类型</label>
+                <label class="layui-form-label">Space type</label>
                 <div class="layui-input-inline" lay-verify="required">
                     <select lay-verify="required" lay-search disabled>
-                        <option value="地下停车位" th:selected="${obj.carParkType == '地下停车位'}">地下停车位</option>
-                        <option value="地面停车位" th:selected="${obj.carParkType == '地面停车位'}">地面停车位</option>
+                        <option value="Underground" th:selected="${obj.carParkType == 'Underground'}">Underground</option>
+                        <option value="Ground" th:selected="${obj.carParkType == 'Ground'}">Ground</option>
                     </select>
                 </div>
             </div>
             <!-- 车位信息 -->
             <div class="layui-form-item" style="display: inline-block;">
-                <label class="layui-form-label">车位信息</label>
+                <label class="layui-form-label">Information</label>
                 <div class="layui-input-inline" lay-verify="required">
                     <input class="layui-input" autocomplete="off" lay-verify="required" th:value="${obj.carParkInfo}"
                            readonly>
@@ -112,10 +112,10 @@
             <div class="layui-form-item">
                 <!-- 户主姓名 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">户主姓名</label>
+                    <label class="layui-form-label">Name of householder</label>
                     <div class="layui-input-inline" lay-verify="required">
                         <select name="userId" lay-search lay-filter="userInfo">
-                            <option value="">选择或输入绑定的住户</option>
+                            <option value="">Select or enter the bound resident</option>
                             <option th:each="item : ${userList}" th:value="${item.id}"
                                     th:text="${item.userName}" th:phone="${item.phone}"></option>
                         </select>
@@ -123,9 +123,9 @@
                 </div>
                 <!-- 户主电话 -->
                 <div style="display: inline-block;">
-                    <label class="layui-form-label">户主电话</label>
+                    <label class="layui-form-label">Phone number</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="phone" lay-verify="required" placeholder="户主电话"
+                        <input type="text" name="phone" lay-verify="required" placeholder="Phone number"
                                autocomplete="off" readonly
                                class="layui-input">
                     </div>
@@ -136,18 +136,18 @@
             <div class="layui-form-item">
                 <div style="display: inline-block">
                     <!-- 抄表人 -->
-                    <label class="layui-form-label">收费人</label>
+                    <label class="layui-form-label">Fee-charging staff</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="readName" lay-verify="required" placeholder="请输入收费人 (必填)"
+                        <input type="text" name="readName" lay-verify="required" placeholder="Please enter the fee-charging employee (required)"
                                autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
                 <!-- 要缴纳的费用 -->
                 <div style="display: inline-block">
-                    <label class=" layui-form-label">本次费用</label>
+                    <label class=" layui-form-label">Fees collected this time</label>
                     <div class="layui-input-inline" lay-verify="required">
-                        <input type="text" name="fee" lay-verify="required" placeholder="缴纳的费用"
+                        <input type="text" name="fee" lay-verify="required" placeholder="Fees paid"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -155,18 +155,18 @@
         </div>
         <!-- 支付方式 -->
         <div class="layui-form-item">
-            <label class="layui-form-label">支付方式</label>
+            <label class="layui-form-label">Payment Methods</label>
             <div class="layui-input-block">
-                <input type="radio" name="payType" value="现金" title="现金" checked="">
-                <input type="radio" name="payType" value="支付宝" title="支付宝">
-                <input type="radio" name="payType" value="微信" title="微信">
+                <input type="radio" name="payType" value="Cash" title="Cash" checked="">
+                <input type="radio" name="payType" value="Alipay" title="Alipay">
+                <input type="radio" name="payType" value="Visa" title="Visa">
             </div>
         </div>
         <div class="layui-form-item">
             <!-- 抄表时间 -->
-            <label class="layui-form-label">收费时间</label>
+            <label class="layui-form-label">Charging time</label>
             <div class="layui-input-inline">
-                <input type="text" name="readDate" lay-verify="required" placeholder="请选择抄表时间 (必填)"
+                <input type="text" name="readDate" lay-verify="required" placeholder="Please select meter reading time (required)"
                        autocomplete="off" readonly th:value="${readDate}" class="layui-input" id="readDate">
             </div>
         </div>
@@ -176,8 +176,8 @@
     <input type="hidden" name="ownerName" th:value="${obj.id}">
 
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="还原">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -214,7 +214,7 @@
                     // 如果flag不为空就是验证不通过
                     if (flag) {
                         layer.confirm(flag, {
-                            btn: ['确定']  //按钮
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         });
@@ -246,14 +246,14 @@
                     success: function (rollData) {
                         if (rollData.code == "0") {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 6
                             }, function () {
                                 window.parent.location.reload();    //刷新父页面
                             });
                         } else {
                             layer.confirm(rollData.msg, {
-                                btn: ['确定']  //按钮
+                                btn: ['OK']  //按钮
                                 , icon: 5
                                 , anim: 6
                             }, function (index) {
@@ -263,8 +263,8 @@
                         }
                     },
                     error: function (res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
-                            btn: ['确定']  //按钮
+                        layer.confirm('Oops! There was a problem with the access!', {
+                            btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
                         }, function (index) {
@@ -289,7 +289,7 @@
             var rePhone = /^1[3456789]\d{9}$/;
             // 非空验证
             if (!carParkType || !carParkInfo) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
             // 如果是已售出， 必须填写业主和联系电话
             // if (parkState == 1) {
