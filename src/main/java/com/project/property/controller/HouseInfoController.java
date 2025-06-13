@@ -226,6 +226,7 @@ public class HouseInfoController {
             else{
                 list = houseInfoService.getRentalHouseMessage(message);
             }
+            System.out.print("get rental message"+list);
             return  new ResultMessage(0,"success",list);
         }catch (Exception e){
             return new ResultMessage(500, "操作出现异常");

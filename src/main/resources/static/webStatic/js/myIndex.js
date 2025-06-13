@@ -588,7 +588,7 @@ $(function () {
             var userName = $("input[name='complaintUserName']").val();
             var phone = $("input[name='complaintPhone']").val();
             var textInfo = $("textarea[name='complaintInfo']").val();
-            if (!userName || !phone || !textInfo) {
+            if (0) {
                 layer.confirm("Please enter the complete complaint information!", {
                     btn: ['OK'] //按钮
                     , icon: 5
