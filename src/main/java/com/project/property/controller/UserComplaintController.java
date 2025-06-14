@@ -128,6 +128,7 @@ public class UserComplaintController {
             if(webUser == null) {
                 return new ResultMessage(207, "抱歉您还未登录！");
             }
+            userComplaint.setUserName(webUser.getUserName());
             // 执行更新方法
             int result = userComplaintService.insertSelective(userComplaint);
             if(result > 0) {
