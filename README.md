@@ -48,7 +48,7 @@
 - [http://localhost:2281/housing/](http://localhost:2281/housing/)
 
 ### 门户网站
-- [http://localhost:2281/housing/index](http://localhost:2281/housing/index)
+- [http://localhost:2281/housinge/index](http://localhost:2281/housing/index)
 
 ### 后台管理页
 - [http://localhost:2281/housing/main.html](http://localhost:2281/housing/main.html)
@@ -58,6 +58,8 @@
 
 ### Python 服务默认地址端口
 - 127.0.0.1:8089
+
+- http://localhost:2281/housing/system/toLoginPage
 
 
 # 账号密码

@@ -105,6 +105,7 @@
                 <li><a href="#about" class="page-scroll">Repair Service</a></li>
                 <li><a href="#testimonials" class="page-scroll">About Us</a></li>
                 <li><a th:href="@{system/toLoginPage}" target="_blank" class="page-scroll">Admin Dashboard</a></li>
+<!--                <li><a target="_blank" class="page-scroll">Admin Dashboard</a></li>-->
             </ul>
         </div>
 
@@ -428,9 +429,12 @@
 
     houseMessage.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            getHouse().then(data => renderTable(data));
+            keypress()
         }
     });
+    function keypress(){
+        getHouse().then(data => renderTable(data));
+    }
 
     function renderTable(data) {
         const tbody = document.getElementById("tableBody");
@@ -466,7 +470,7 @@
     }
 
     renderTable(properties);
-
+    keypress()
     function filterTable() {
         const keyword = document.getElementById("searchInput").value.toLowerCase();
         const filtered = properties.filter(item =>
