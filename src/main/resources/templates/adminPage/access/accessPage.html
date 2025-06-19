@@ -45,25 +45,24 @@
 <button id="getForumAI" class="layui-btn layui-btn-primary layui-border-blue">forum analysis</button>
 <button id="getComplaintAI" class="layui-btn layui-btn-primary layui-border-orange">complaint analysis</button>
 </body>
-<script>
-    let forum = document.getElementById("getForumAI")
-    forum.addEventListener("click", function (){
-        this.innerText = "waiting..."
-        getForumAI()
-        this.innerText = "forum analysis"
-    })
-    let complaint = document.getElementById("getComplaintAI")
-    complaint.addEventListener("click", function (){
-        this.innerText = "waiting..."
-        getComplaintAI()
-        this.innerText = "complaint analysis"
-    })
 
-    function getForumAI() {
+<script>
+    let can_use = true
+    const forum = document.getElementById("getForumAI");
+    forum.addEventListener("click", function () {
+
+        if(! can_use){
+            alert("AI is currently analyzing.")
+            return
+        }
+        can_use = ! can_use
+        const btn = this;
+        btn.innerText = "waiting...";
+
         axios({
             method: 'get',
-            url:  "http://localhost:2281/housing/ai/forum",
-            responseType: 'blob', // 关键：告诉 axios 返回二进制流
+            url: "http://localhost:2281/housing/ai/forum",
+            responseType: 'blob',
         }).then(response => {
             const blob = new Blob([response.data], {
                 type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
@@ -72,23 +71,37 @@
             const downloadUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = downloadUrl;
-
-            // 可自定义文件名
             a.download = 'forum_analysis.docx';
             document.body.appendChild(a);
             a.click();
             a.remove();
             window.URL.revokeObjectURL(downloadUrl);
         }).catch(error => {
-            console.error('error', error);
+            console.error('Forum AI download error:', error);
+            btn.innerText = "error";
+        }).finally(() => {
+            if (btn.innerText !== "error") {
+                btn.innerText = "forum analysis";
+            }
+            can_use = true
         });
-    }
+    });
 
-    function getComplaintAI() {
+    const complaint = document.getElementById("getComplaintAI");
+    complaint.addEventListener("click", function () {
+
+        if(! can_use){
+            alert("AI is currently analyzing.")
+            return
+        }
+        can_use = ! can_use
+        const btn = this;
+        btn.innerText = "waiting...";
+
         axios({
             method: 'get',
-            url:  "http://localhost:2281/housing/ai/complaint",
-            responseType: 'blob', // 关键：告诉 axios 返回二进制流
+            url: "http://localhost:2281/housing/ai/complaint",
+            responseType: 'blob',
         }).then(response => {
             const blob = new Blob([response.data], {
                 type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
@@ -97,19 +110,22 @@
             const downloadUrl = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = downloadUrl;
-
-            // 可自定义文件名
             a.download = 'complaint_analysis.docx';
             document.body.appendChild(a);
             a.click();
             a.remove();
             window.URL.revokeObjectURL(downloadUrl);
         }).catch(error => {
-            console.error('error', error);
+            console.error('Complaint AI download error:', error);
+            btn.innerText = "error";
+        }).finally(() => {
+            if (btn.innerText !== "error") {
+                btn.innerText = "complaint analysis";
+            }
+            can_use = true
         });
-
-    }
-
+    });
 </script>
+
 
 </html>

@@ -86,7 +86,7 @@ public class AIController {
         String prompting ="需要你快速响应，不需要深度思考。我将给你一段来自MySQL的complaint数据列表，每一个子项都是‘UserComplaint ’,主要字段有投诉内容complaintInfo," +
                 "内容content,用户名userName,投诉是否被解决isSolveStr,居民的反馈feedbackMsg,python分析的用户情感分score,和投诉的评价等级degree,解决投诉的员工employee。这些数据来源于社区居民的投诉信息，帮我总结这些投诉信息，推断居民们的需求，和对管理员的建议。下面是具体的英文complaint数据："+aLl+
                 "使用英文回答，只要英文文本，不需要docx格式";
-        System.out.println("try to call ai");
+        System.out.println("try to call ai for complaint analysis");
         String result = callDeepSeek(prompting);
         run.setText("Complaint Information Analysis");
         run.addBreak();
