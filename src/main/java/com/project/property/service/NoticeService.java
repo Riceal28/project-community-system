@@ -52,6 +52,10 @@ public class NoticeService{
         return pageInfo.getList();
     }
 
+    public List<Notice> getALl(){
+        return noticeMapper.getAll();
+    }
+
     /**
      * 查询数据总条数
      * @param notice

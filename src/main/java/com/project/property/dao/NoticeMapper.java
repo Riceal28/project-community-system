@@ -22,6 +22,7 @@ public interface NoticeMapper {
      * @return
      */
     List<Notice> selectDataByParam(Notice notice);
+    List<Notice> getAll();
 
     /**
      * 查询数据量

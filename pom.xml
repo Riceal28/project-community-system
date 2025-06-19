@@ -155,6 +155,11 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml</artifactId>-->
+<!--            <version>5.2.5</version> &lt;!&ndash; 使用最新版 &ndash;&gt;-->
+<!--        </dependency>-->
 
 
         <dependency>

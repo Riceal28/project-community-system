@@ -87,6 +87,10 @@ public class UserComplaintService {
         return pageInfo.getList();
     }
 
+    public List<UserComplaint> getAll() {
+         return userComplaintMapper.getAll();
+    }
+
     /**
      * 查询数据总量
      *

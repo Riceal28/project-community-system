@@ -193,4 +193,10 @@
         phone = #{phone}
         WHERE user_id = #{userId}
     </update>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select  *
+        from `user_complaint`
+    </select>
+
 </mapper>

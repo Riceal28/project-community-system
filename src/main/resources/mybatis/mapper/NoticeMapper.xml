@@ -124,4 +124,11 @@
       </if>
     </where>
   </select>
+
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT *
+    FROM notice
+
+  </select>
+
 </mapper>

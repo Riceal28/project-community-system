@@ -59,6 +59,7 @@ public interface UserComplaintMapper {
      * @return
      */
     List<UserComplaint> selectDataByParam(UserComplaint userComplaint);
+    List<UserComplaint> getAll();
 
     /**
      * 查询ID和状态是否是未处理
