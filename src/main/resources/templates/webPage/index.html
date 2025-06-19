@@ -96,7 +96,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#header" class="page-scroll">Home Page</a></li>
+                <li><a href="#header" class="page-scroll">Home</a></li>
 <!--                <li><a href="javascript:;" id="buyHouse" class="page-scroll">Property Fee Inquiry</a></li>-->
 <!--                <li><a href="javascript:;" id="buyCarPark" class="page-scroll">Parking Fee Inquiry</a></li>-->
                 <li><a href="#notice" class="page-scroll">Announcement</a></li>
@@ -166,18 +166,12 @@
                     <h2 style="font-size: 30px;">
                         Announcement
                         <button type="button" class="btn btn-primary" id="createNotice" style="float: right;">
-                            Announcement
-                        </button>
-                        <button type="button" class="btn btn-primary" id="meNotice"
-                                style="float: right; margin-right: 8px">
-                            Post
-                        </button>
-                        <button type="button" class="btn btn-primary" id="meComment"
-                                style="float: right; margin-right: 8px">
-                            Comment
+                            Make an announcement
                         </button>
                         <div style="clear: both"></div>
                     </h2>
+
+                    <!-- 公告内容区域 -->
                     <div class="col-lg-12 col-sm-12 col-xs-12" style="padding-left: 0;
                             max-height: 245px; min-height: 245px">
                         <div class="panel-group" id="accordion">
@@ -206,6 +200,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- ✅ 在分页导航之前插入按钮 -->
+                    <div style="margin-top: 15px; text-align: right;">
+                        <button type="button" class="btn btn-primary" id="meComment" style="margin-right: 8px;">
+                            My comments
+                        </button>
+                        <button type="button" class="btn btn-primary" id="meNotice">
+                            My announcements
+                        </button>
+                    </div>
+
+                    <!-- 分页 -->
                     <div>
                         <nav aria-label="Page navigation">
                             <input type="hidden" name="currPage" th:value="${currPage}">
@@ -230,12 +236,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 右侧图片 -->
             <div class="col-xs-12 col-md-6">
                 <img th:src="@{/webStatic/img/new_index.jpg}" class="img-responsive" alt="" width="585" height="350">
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -461,10 +470,10 @@
         try {
             const response = await axios.post(url);
             const data = response.data;
-            console.log('房源数据:', data);
+            console.log('Property data:', data);
             return data.data;
         } catch (error) {
-            console.error('请求出错:', error);
+            console.error('Request error:', error);
             return [];
         }
     }
