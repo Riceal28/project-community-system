@@ -413,11 +413,10 @@ function getPath() {
  */
 function checkID(val) {
     if(checkCode(val)) {
-        var date = val.substring(6,14);
-        if(checkDate(date)) {
-            if(checkProvince(val.substring(0,2))) {
-                return "";
-            }
+        if (val && val.length > 0) {
+            return "";  // 表示输入合法
+        } else {
+            return "Please enter the ID number";
         }
     }
     return "The ID card input format is incorrect!";
@@ -495,7 +494,7 @@ function checkProvince(val) {
  */
 function checkPhone(phoneNum) {
     // 手机号正则
-    var rePhone = /^1[3456789]\d{9}$/;
+    var rePhone = /^.+$/;
     if(!phoneNum) {
         return "Please enter the complete information";
     } else if(!rePhone.test(phoneNum)) {

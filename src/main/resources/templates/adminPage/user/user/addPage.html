@@ -77,24 +77,24 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">身份证号</label>
+            <label class="layui-form-label">ID number</label>
             <div class="layui-input-inline">
-                <input type="text" name="cardNum" lay-verify="required" placeholder="请填写身份证号 (选填)" autocomplete="off"
+                <input type="text" name="cardNum" lay-verify="required" placeholder="Please fill in your ID number (optional)" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
+            <label class="layui-form-label">Password</label>
             <div class="layui-input-inline">
-                <input type="password" name="password" lay-verify="required" placeholder="请设置密码" autocomplete="off"
+                <input type="password" name="password" lay-verify="required" placeholder="Please set password" autocomplete="off"
                        class="layui-input">
             </div>
         </div>
     </div>
 
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="清空">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -169,7 +169,7 @@
                         }
                     },
                     error: function (res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
+                        layer.confirm('Oops! There was a problem with the access!', {
                             btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
@@ -192,15 +192,15 @@
             var cardNum = $("input[name='cardNum']:checked").val();
             // 非空验证
             if (!userName || !phone) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
             // 正则判断手机号
             if (checkPhone(phone)) {
-                return "请填写正确手机号";
+                return "Please fill in the correct mobile phone number";
             }
             // 身份证可以不输入， 如果输入进行验证
             if (cardNum && checkID(cardNum)) {
-                return "请填写正确身份证号";
+                return "Please fill in the correct ID number";
             }
         }
     });
