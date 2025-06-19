@@ -43,12 +43,12 @@ public class HouseInfoController {
             List<HouseInfo> dataList = houseInfoService.selectDataByPage(houseInfo, page, limit);
             Integer count = houseInfoService.selectDataCount(houseInfo);
             if (dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch (Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -81,24 +81,24 @@ public class HouseInfoController {
                     chargeVisit.setCurrMonthCount(0);
                     resultMap.put("houseInfo", houseInfo);
                     resultMap.put("chargeVisit", chargeVisit);
-                    return new ResultMessage(0, "查询成功！", resultMap);
+                    return new ResultMessage(0, "Query successful!", resultMap);
                 } else if (selectObj instanceof PropertyChargeVisit) {
                     chargeVisit = (PropertyChargeVisit) selectObj;
                     resultMap.put("houseInfo", houseInfo);
                     resultMap.put("chargeVisit", chargeVisit);
-                    return new ResultMessage(0, "查询成功！", resultMap);
+                    return new ResultMessage(0, "Query successful!", resultMap);
                 } else if (selectObj instanceof Integer && Integer.parseInt(selectObj.toString()) == -500) {
-                    return new ResultMessage(207, "该房间用户本月已录入缴费信息！");
+                    return new ResultMessage(207, "The user of this room has entered the payment information this month!");
                 }
             }
             if (houseInfo != null) {
                 resultMap.put("houseInfo", houseInfo);
-                return new ResultMessage(0, "查询成功！", resultMap);
+                return new ResultMessage(0, "Query successful!", resultMap);
             } else {
-                return new ResultMessage(207, "暂无相关数据！");
+                return new ResultMessage(207, "No relevant data yet!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(500, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -114,14 +114,14 @@ public class HouseInfoController {
             // 执行更新方法
             int result = houseInfoService.updateByPrimaryKeySelective(houseInfo);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！该房间号已存在！");
+                return new ResultMessage(207, "Operation failed! The room number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -137,14 +137,14 @@ public class HouseInfoController {
             // 执行更新方法
             int result = houseInfoService.updateSoldInfo(houseInfo, null);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！该房间号已存在！");
+                return new ResultMessage(207, "Operation failed! The room number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -160,14 +160,14 @@ public class HouseInfoController {
             // 执行更新方法
             int result = houseInfoService.updateUnSoldInfo(houseInfo);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！该房间号已存在！");
+                return new ResultMessage(207, "Operation failed! The room number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -183,14 +183,14 @@ public class HouseInfoController {
             // 执行更新方法
             int result = houseInfoService.insertSelective(houseInfo);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！该房间号已存在！");
+                return new ResultMessage(207, "Operation failed! The room number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -206,14 +206,14 @@ public class HouseInfoController {
             // 执行更新方法
             int result = houseInfoService.deleteByPrimaryKey(ids);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！该房间仍被引用！");
+                return new ResultMessage(207, "Operation failed! The room is still referenced!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
     @PostMapping("/getRentalHouse")
@@ -229,7 +229,7 @@ public class HouseInfoController {
             System.out.print("get rental message"+list);
             return  new ResultMessage(0,"success",list);
         }catch (Exception e){
-            return new ResultMessage(500, "操作出现异常");
+            return new ResultMessage(500, "Operation exception");
         }
     }
 }

@@ -22,7 +22,7 @@ layui.use(['table', 'form', 'laydate'], function() {
             limit: 10
         },
         cols: [[
-            {type: 'numbers', title: 'No.', width: 60},
+            {type: 'numbers', title: 'No.444', width: 60},
             {field: 'userName', title: 'Name', width: 100},
             {field: 'phone', title: 'Phone number', width: 120},
             {title: '健康码', templet: '#visitImageTemp', width: 80},

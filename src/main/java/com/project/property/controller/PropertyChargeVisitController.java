@@ -48,12 +48,12 @@ public class PropertyChargeVisitController {
             List<PropertyChargeVisit> dataList = propertyChargeVisitService.selectDataByPage(propertyChargeVisit, page, limit);
             Integer count = propertyChargeVisitService.selectDataCount(propertyChargeVisit);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -68,12 +68,12 @@ public class PropertyChargeVisitController {
             // 执行方法
             int result = propertyChargeVisitService.updateByPrimaryKeySelective(propertyChargeVisit);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -93,18 +93,19 @@ public class PropertyChargeVisitController {
                 user.setUserName(propertyChargeVisit.getUserName());
                 user.setPhone(propertyChargeVisit.getPhone());
                 User findResult = userService.selectByParam2(user);
-                System.out.println("发送邮件中...");
+                System.out.println("Sending email...");
                 // 发送邮件
                 ArrayList<String> target = CollUtil.newArrayList(findResult.getEmail());
-                MailUtil.send(mailAccount, target, "小区物业",
-                        "[小区物业] 业主您好,您本月需要缴纳的账单已结出,请及时到物业处缴纳,感谢配合！", true);
-                System.out.println("邮件已发送! ");
-                return new ResultMessage(0, "操作成功！");
+                MailUtil.send(mailAccount, target, "Community Property",
+                        "[Community Property] Dear owner, the bill you need to pay this month has been settled. " +
+                                "Please go to the property office to pay it in time. Thank you for your cooperation!", true);
+                System.out.println("Sent successfully!");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 

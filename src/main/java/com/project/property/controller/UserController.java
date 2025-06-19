@@ -34,13 +34,13 @@ public class UserController {
             List<User> dataList = userService.selectDataByPage(user, page, limit);
             Integer count = userService.selectDataCount(user);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
             e.printStackTrace();
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -55,12 +55,12 @@ public class UserController {
             // 执行更新方法
             int result = userService.updateByPrimaryKeySelective(user);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -75,14 +75,14 @@ public class UserController {
             // 执行新增方法
             int result = userService.insertSelective(user);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "录入的用户信息已存在！不可重复录入！");
+                return new ResultMessage(207, "The entered user information already exists! Cannot be entered again!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -97,14 +97,14 @@ public class UserController {
             // 执行新增方法
             int result = userService.deleteByPrimaryKey(ids);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！删除的信息中仍有被引用的信息！");
+                return new ResultMessage(207, "Operation failed! There are still referenced information in the deleted information!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 }

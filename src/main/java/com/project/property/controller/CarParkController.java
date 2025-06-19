@@ -36,12 +36,12 @@ public class CarParkController {
             List<CarPark> dataList = carParkService.selectDataByPage(carPark, page, limit);
             Integer count = carParkService.selectDataCount(carPark);
             if (dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch (Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -57,12 +57,12 @@ public class CarParkController {
             // 执行更新方法
             int result = carParkService.updateByPrimaryKeySelective(carPark);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -78,12 +78,12 @@ public class CarParkController {
             // 执行新增方法
             int result = carParkService.insertSelective(carPark);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -99,14 +99,14 @@ public class CarParkController {
             // 执行新增方法
             int result = carParkService.deleteByPrimaryKey(ids);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if (result == -500) {
-                return new ResultMessage(207, "操作失败！删除的信息中仍有被引用的信息！");
+                return new ResultMessage(207, "Operation failed! There are still referenced information in the deleted information!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -123,12 +123,12 @@ public class CarParkController {
             carPark.setChargeDate(new Date());
             int result = carParkService.insertCharge(carPark);
             if (result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch (Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -147,12 +147,12 @@ public class CarParkController {
             List<CarParkCharge> dataList = carParkService.selectChargeDataByPage(carPark, page, limit);
             Integer count = carParkService.selectDataCount2(carPark);
             if (dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch (Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 }

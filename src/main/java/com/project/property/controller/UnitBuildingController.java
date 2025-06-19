@@ -33,13 +33,13 @@ public class UnitBuildingController {
             List<UnitBuilding> dataList = unitBuildingService.selectDataByPage(unitBuilding, page, limit);
             Integer count = unitBuildingService.selectDataCount(unitBuilding);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch (Exception e) {
             // 出现异常
-            return new ResultMessage(1, "查询出现异常！");
+            return new ResultMessage(1, "The query was abnormal:");
         }
     }
 
@@ -54,13 +54,13 @@ public class UnitBuildingController {
         try {
             List<UnitBuilding> data = unitBuildingService.selectAllInfo(unitBuilding);
             if(data != null && data.size() == 1) {
-                return new ResultMessage(0, "查询成功！", data.get(0));
+                return new ResultMessage(0, "Query successful!", data.get(0));
             } else {
-                return new ResultMessage(207, "暂无相关数据！");
+                return new ResultMessage(207, "No relevant data yet!");
             }
         } catch (Exception e) {
             // 出现异常
-            return new ResultMessage(500, "查询出现异常！");
+            return new ResultMessage(500, "The query was abnormal:");
         }
     }
 
@@ -75,14 +75,14 @@ public class UnitBuildingController {
             // 执行新增方法
             int result = unitBuildingService.updateByPrimaryKeySelective(unitBuilding);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！楼宇号已存在！");
+                return new ResultMessage(207, "Operation failed! The building number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -97,14 +97,14 @@ public class UnitBuildingController {
             // 执行新增方法
             int result = unitBuildingService.insertSelective(unitBuilding);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！楼宇号已存在！");
+                return new ResultMessage(207, "Operation failed! The building number already exists!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -119,15 +119,15 @@ public class UnitBuildingController {
             // 执行新增方法
             int result = unitBuildingService.deleteByPrimaryKey(ids);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！删除的信息中仍有被引用的信息！");
+                return new ResultMessage(207, "Operation failed! There are still referenced information in the deleted information!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
             e.printStackTrace();
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 }

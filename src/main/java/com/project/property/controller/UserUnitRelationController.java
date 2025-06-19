@@ -34,12 +34,12 @@ public class UserUnitRelationController {
             List<UserUnitRelation> dataList = userUnitRelationService.selectDataByPage(userUnitRelation, page, limit);
             Integer count = userUnitRelationService.selectDataCount(userUnitRelation);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -54,14 +54,14 @@ public class UserUnitRelationController {
             // 执行新增方法
             int result = userUnitRelationService.insertSelective(userUnitRelation);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！该成员已经在该房间！");
+                return new ResultMessage(207, "Operation failed! The member is already in the room!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -76,14 +76,14 @@ public class UserUnitRelationController {
             // 执行新增方法
             int result = userUnitRelationService.deleteByPrimaryKey(delIds);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！户主不可删除！");
+                return new ResultMessage(207, "Operation failed! The owner cannot be deleted!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 }

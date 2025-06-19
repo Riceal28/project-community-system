@@ -5,11 +5,19 @@ server:
     context-path: /housing  #项目访问地址名
 
 #使用druid连接池时需要的配置
+#spring:
+#  datasource:
+#    username: jackeylove
+#    password: Champion2018
+#    url: jdbc:mysql://8.155.47.69:3306/house?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    # 注：将SpringBoot默认的DataSource改为DruidDataSource
+#    type: com.alibaba.druid.pool.DruidDataSource
 spring:
   datasource:
-    username: jackeylove
-    password: Champion2018
-    url: jdbc:mysql://8.155.47.69:3306/house?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/property_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 注：将SpringBoot默认的DataSource改为DruidDataSource
     type: com.alibaba.druid.pool.DruidDataSource

@@ -33,12 +33,12 @@ public class PropertyPayVisitController {
             List<PropertyPayVisit> dataList = propertyPayVisitService.selectDataByPage(propertyPayVisit, page, limit);
             Integer count = propertyPayVisitService.selectDataCount(propertyPayVisit);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -53,14 +53,14 @@ public class PropertyPayVisitController {
             // 执行更新方法
             int result = propertyPayVisitService.insertSelective(propertyPayVisit);
             if(result > 0) {
-                return new ResultMessage(0, "缴费成功！");
+                return new ResultMessage(0, "Pay successfully!");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！");
+                return new ResultMessage(207, "Operation failed!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 }

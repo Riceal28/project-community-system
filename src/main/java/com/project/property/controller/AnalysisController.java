@@ -37,12 +37,12 @@ public class AnalysisController {
             Map dataList = carParkService.statisticAnalysis();
 
             if (ObjectUtil.isNotEmpty(dataList)) {
-                return new ResultMessage(0, "查询成功！", dataList, null, null);
+                return new ResultMessage(0, "Query successful!", dataList, null, null);
             } else {
-                return new ResultMessage(1, "暂无数据可以分析！");
+                return new ResultMessage(1, "There is no data to analyze!");
             }
         } catch (Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 }

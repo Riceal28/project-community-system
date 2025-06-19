@@ -55,16 +55,16 @@
     <div id="product_info" style="width:100%">
         <!-- 评价内容 -->
         <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">评价内容</label>
+            <label class="layui-form-label">Comment</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入评价内容" class="layui-textarea" name="content"></textarea>
+                <textarea placeholder="Contents" class="layui-textarea" name="content"></textarea>
             </div>
         </div>
     </div>
     
     <div class="content-input" style="position: absolute; left: 15px; bottom: 15px;">
-        <input type="button" value="提交" name="submit" class="layui-btn addBtn layui-btn-normal">
-        <input type="reset" class="layui-btn layui-btn-normal" value="清空">
+        <input type="button" value="Submit" name="submit" class="layui-btn addBtn layui-btn-normal">
+        <input type="reset" class="layui-btn layui-btn-normal" value="Reset">
     </div>
 </form>
 
@@ -138,7 +138,7 @@
                         }
                     },
                     error: function(res) {
-                        layer.confirm('啊哦！访问出问题了！快找开发狗算账！', {
+                        layer.confirm('Oops! There was a problem with the access!', {
                             btn: ['OK']  //按钮
                             , icon: 5
                             , anim: 6
@@ -159,7 +159,7 @@
             var content = $("textarea[name='content']").val();
             // 非空验证
             if(!content) {
-                return "请认真点, 将所有必填数据填写完整! ";
+                return "Please be careful and fill in all required data!";
             }
         }
     });

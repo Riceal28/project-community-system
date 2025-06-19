@@ -36,12 +36,12 @@ public class UserRepairController {
             List<UserRepair> dataList = userRepairService.selectDataByPage(userRepair, page, limit);
             Integer count = userRepairService.selectDataCount(userRepair);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -59,12 +59,12 @@ public class UserRepairController {
             List<UserRepair> dataList = userRepairService.selectDataByPage(userRepair, page, limit);
             Integer count = userRepairService.selectDataCount(userRepair);
             if(dataList != null && dataList.size() > 0) {
-                return new ResultMessage(0, "查询成功！", dataList, count, limit);
+                return new ResultMessage(0, "Query successful!", dataList, count, limit);
             } else {
-                return new ResultMessage(1, "暂无相关数据！");
+                return new ResultMessage(1, "No relevant data yet!");
             }
         } catch(Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 
@@ -82,14 +82,14 @@ public class UserRepairController {
             // 执行更新方法
             int result = userRepairService.updateByPrimaryKeySelective(userRepair);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful！");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！");
+                return new ResultMessage(207, "Operation failed!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -103,15 +103,15 @@ public class UserRepairController {
             // 执行更新方法
             int result = userRepairService.updateByPrimaryKeySelective(repair);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful！");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！");
+                return new ResultMessage(207, "Operation failed!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
             e.printStackTrace();
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -125,19 +125,19 @@ public class UserRepairController {
         try {
             User webUser = (User) request.getSession().getAttribute("webUser");
             if(webUser == null) {
-                return new ResultMessage(207, "抱歉您还未登录！");
+                return new ResultMessage(207, "You are not logged in!");
             }
             // 执行更新方法
             int result = userRepairService.insertSelective(userRepair);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful！");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！");
+                return new ResultMessage(207, "Operation failed!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -152,14 +152,14 @@ public class UserRepairController {
             // 执行更新方法
             int result = userRepairService.deleteByPrimaryKey(ids);
             if(result > 0) {
-                return new ResultMessage(0, "操作成功！");
+                return new ResultMessage(0, "Operation successful！");
             } else if(result == -500) {
-                return new ResultMessage(207, "操作失败！选择的信息包含未处理信息！");
+                return new ResultMessage(207, "Operation failed! The selected information contains unprocessed information!");
             } else {
-                return new ResultMessage(207, "操作失败！请稍后重试！");
+                return new ResultMessage(207, "Operation failed! Please try again later!");
             }
         } catch(Exception e) {
-            return new ResultMessage(500, "操作出现异常：" + e.getMessage());
+            return new ResultMessage(500, "Operation exception:" + e.getMessage());
         }
     }
 
@@ -175,12 +175,12 @@ public class UserRepairController {
             Map dataList = userRepairService.statisticAnalysis();
 
             if (ObjectUtil.isNotEmpty(dataList)) {
-                return new ResultMessage(0, "查询成功！", dataList, null, null);
+                return new ResultMessage(0, "Query successful!", dataList, null, null);
             } else {
-                return new ResultMessage(1, "暂无数据可以分析！");
+                return new ResultMessage(1, "There is no data to analyze!");
             }
         } catch (Exception e) {
-            return new ResultMessage(1, "查询出现异常：" + e.getMessage());
+            return new ResultMessage(1, "The query was abnormal:" + e.getMessage());
         }
     }
 }
